@@ -10,6 +10,18 @@ public class PlayerAttack : MonoBehaviour
 
     [SerializeField] private Projectile _projectilePrefab;
     [SerializeField] private int _nbOutputProjectile;
+    private Vector3 _projectileSize;
+    private Vector3 _currentProjectileSize;
+
+    private void Start()
+    {
+        if (_projectilePrefab != null)
+        {
+            _projectileSize = _projectilePrefab.transform.localScale; //Get the normal size to resize projectiles when the bonus is lost
+            _currentProjectileSize = _projectilePrefab.transform.localScale;
+        }
+        
+    }
 
     void OnValidate() {
         if (_nbOutputProjectile < 1){
@@ -29,8 +41,19 @@ public class PlayerAttack : MonoBehaviour
     }
 
     IEnumerator Shoot(int index){
-        Instantiate(_projectilePrefab, _spawnsTransform[index].position,Quaternion.identity);
+        Projectile proj = Instantiate(_projectilePrefab, _spawnsTransform[index].position,Quaternion.identity);
+        proj.gameObject.transform.localScale = _currentProjectileSize;
         yield return new WaitForSeconds(_timeToReload);
         _canShoot = true;
+    }
+
+    public void MultiplyProjectileSize(float newProjectileSize)
+    {
+        _currentProjectileSize = _projectileSize * newProjectileSize;
+    }
+
+    public void ResetProjectileSize()
+    {
+        _currentProjectileSize = _projectileSize;
     }
 }
