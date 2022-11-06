@@ -2,23 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class PlayerBonus : MonoBehaviour
 {
-    List<Bonus> _bonuses;
-    [SerializeField] float _sizeMultiplier;
+    [SerializeField] PlayerAttack _attackScript;
+    //List<Bonus> _bonuses;
 
     void Start()
     {
-        _bonuses = new List<Bonus>();
+        //_bonuses = new List<Bonus>();
     }
 
-    public void ApplyRedBonus()
+    public void ApplyRedBonus(float sizeMultiplier)
     {
-
+        _attackScript.MultiplyProjectileSize(sizeMultiplier);
+        _attackScript.GetComponent<SpriteRenderer>().color = Color.red;
     }
 
-    void ClearBonuses()
+    public void ClearBonuses()
     {
-        _bonuses.Clear();
+        //_bonuses.Clear();
+        //RED
+        _attackScript.ResetProjectileSize();
+        _attackScript.GetComponent<SpriteRenderer>().color = Color.white;
     }
 }

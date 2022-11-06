@@ -13,13 +13,13 @@ public abstract class Bonus : MonoBehaviour
         transform.position += new Vector3(0f, -_speed * Time.deltaTime, 0f);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             PlayerBonus plBonus = collision.gameObject.GetComponent<PlayerBonus>();
             ApplyBonus(plBonus);
+            Destroy(gameObject);
         }
     }
-
 }
