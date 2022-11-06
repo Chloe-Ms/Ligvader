@@ -29,7 +29,7 @@ public class EnemyHealth : MonoBehaviour
         bool canDrop = Random.Range(0, 1) <= _chanceToDropBonus;
         if (canDrop && _bonusPrefabs.Length > 0)
         {
-            int indexBonus = Random.Range(0, _bonusPrefabs.Length); //
+            int indexBonus = Random.Range(0, _bonusPrefabs.Length);
             Instantiate(_bonusPrefabs[indexBonus], transform.position, Quaternion.identity);
         }
     }
