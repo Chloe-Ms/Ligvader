@@ -9,9 +9,10 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private Transform[] _spawnsTransform;
 
     [SerializeField] private Projectile _projectilePrefab;
-    [SerializeField] private int _nbOutputProjectile;
+    private int _nbOutputProjectile;
     private Vector3 _projectileSize;
     private Vector3 _currentProjectileSize;
+    //private bool has
 
     private void Start()
     {

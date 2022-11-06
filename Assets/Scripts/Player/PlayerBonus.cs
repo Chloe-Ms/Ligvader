@@ -25,6 +25,5 @@ public class PlayerBonus : MonoBehaviour
         //_bonuses.Clear();
         //RED
         _attackScript.ResetProjectileSize();
-        _attackScript.GetComponent<SpriteRenderer>().color = Color.white;
     }
 }
