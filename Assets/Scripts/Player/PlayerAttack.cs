@@ -12,7 +12,6 @@ public class PlayerAttack : MonoBehaviour
     private int _nbOutputProjectile;
     private Vector3 _projectileSize;
     private Vector3 _currentProjectileSize;
-    //private bool has
 
     private void Start()
     {

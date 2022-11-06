@@ -9,6 +9,9 @@ public class FollowPath : MonoBehaviour
     [SerializeField]
     private Transform[] _waypoints;
 
+    [SerializeField]
+    private bool loop;
+
     //Walk speed of the enemy 
     [SerializeField]
     private float _moveSpeed = 2f;
@@ -56,7 +59,11 @@ public class FollowPath : MonoBehaviour
             {
                 if (_waypointIndex + 1 == _waypoints.Length)
                 {
-                    _leftToRight = !_leftToRight;
+                    if (loop)
+                    {
+                        _leftToRight = !_leftToRight;
+                    }
+                    
                 } else
                 {
                     _waypointIndex = _waypointIndex + 1;
@@ -65,7 +72,10 @@ public class FollowPath : MonoBehaviour
             {
                 if (_waypointIndex - 1 == -1)
                 {
-                    _leftToRight = !_leftToRight;
+                    if (loop)
+                    {
+                        _leftToRight = !_leftToRight;
+                    }
                 } else
                 {
                     _waypointIndex = _waypointIndex - 1;

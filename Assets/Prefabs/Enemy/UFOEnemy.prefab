@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5557272818445872667}
   - component: {fileID: -4987246202172779311}
   m_Layer: 0
-  m_Name: MobileEnemy
+  m_Name: UFOEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0.96274924, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.8616719, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -144,6 +144,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f04b6842f43ed742be8f6e9f776c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _points: 0
+  _scoreScript: {fileID: 0}
   _health: 1
   _chanceToDropBonus: 1
   _bonusPrefabs:
@@ -181,8 +183,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbacfda4504607740b1d90203c90cdcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypoints: []
-  moveSpeed: 2
+  _waypoints: []
+  _moveSpeed: 2
+  _startOnLeft: 0
 --- !u!1 &4304933967302539158
 GameObject:
   m_ObjectHideFlags: 0
