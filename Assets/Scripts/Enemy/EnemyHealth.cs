@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
+    [SerializeField] int _points;
+    [SerializeField] Score _scoreScript;
     [SerializeField] int _health;
-    //[SerializeField] PlayerBonus _playerBonus;
     [SerializeField] float _chanceToDropBonus;
     [SerializeField] GameObject[] _bonusPrefabs;
 
@@ -14,11 +15,17 @@ public class EnemyHealth : MonoBehaviour
         _health = 1;
     }
 
+    void OnValidate()
+    {
+        if (_points < 0) _points = 0;
+    }
+
     void TakeDamage()
     {
         _health--;
         if (_health <= 0)
         {
+            _scoreScript.AddAmountToScore(_points);
             DropBonus();
             Destroy(gameObject);
         }
@@ -29,7 +36,7 @@ public class EnemyHealth : MonoBehaviour
         bool canDrop = Random.Range(0, 1) <= _chanceToDropBonus;
         if (canDrop && _bonusPrefabs.Length > 0)
         {
-            int indexBonus = Random.Range(0, _bonusPrefabs.Length);
+            int indexBonus = Random.Range(0, _bonusPrefabs.Length); //A MODIFIER EN FONCTION DU NOMBRE DE BONUS QU'IL RESTE
             Instantiate(_bonusPrefabs[indexBonus], transform.position, Quaternion.identity);
         }
     }

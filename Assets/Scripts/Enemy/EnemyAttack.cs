@@ -10,17 +10,11 @@ public class EnemyAttack : MonoBehaviour
     bool _canAttack = true;
     [SerializeField] GameObject _projectilePrefab;
     [SerializeField] Transform _spawnPosition;
-
     void Start()
     {
         StartCoroutine(Attack());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     IEnumerator Attack()
     {
