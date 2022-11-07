@@ -10,6 +10,7 @@ public class PlayerAttack : MonoBehaviour
 
     [SerializeField] private Projectile _projectilePrefab;
     private int _nbOutputProjectile;
+    private bool _isOutputInside = true;
     private Vector3 _projectileSize;
     private Vector3 _currentProjectileSize;
 
@@ -36,15 +37,32 @@ public class PlayerAttack : MonoBehaviour
     void OnFire(){
         if (_canShoot && _spawnsTransform.Length > 0){
             _canShoot = false;
-            StartCoroutine(Shoot(0));
+            StartCoroutine(Shoot());
         }
     }
 
-    IEnumerator Shoot(int index){
-        Projectile proj = Instantiate(_projectilePrefab, _spawnsTransform[index].position,Quaternion.identity);
-        proj.gameObject.transform.localScale = _currentProjectileSize;
-        yield return new WaitForSeconds(_timeToReload);
-        _canShoot = true;
+    IEnumerator Shoot(){
+        if (_spawnsTransform.Length >= _nbOutputProjectile) //If number of outputs is bigger than number of transform
+        {
+            Instantiate(_projectilePrefab, _spawnsTransform[0].position, Quaternion.identity);
+                if ((_nbOutputProjectile == 3 && _isOutputInside) || _nbOutputProjectile == 5)
+                { //Red bonus, bigger size
+                    Projectile proj = Instantiate(_projectilePrefab, _spawnsTransform[1].position, Quaternion.identity);
+                    proj.gameObject.transform.localScale = _currentProjectileSize;
+                    proj = Instantiate(_projectilePrefab, _spawnsTransform[2].position, Quaternion.identity);
+                    proj.gameObject.transform.localScale = _currentProjectileSize;
+                }
+
+                if ((_nbOutputProjectile == 3 && !_isOutputInside) || _nbOutputProjectile == 5) //Blue bonus, same size
+                {
+                    Debug.Log("EXT");
+                    Instantiate(_projectilePrefab, _spawnsTransform[3].position, Quaternion.identity);
+                    Instantiate(_projectilePrefab, _spawnsTransform[4].position, Quaternion.identity);
+                }
+            yield return new WaitForSeconds(_timeToReload);
+            _canShoot = true;
+        }
+
     }
 
     public void MultiplyProjectileSize(float newProjectileSize)
@@ -52,8 +70,42 @@ public class PlayerAttack : MonoBehaviour
         _currentProjectileSize = _projectileSize * newProjectileSize;
     }
 
-    public void ResetProjectileSize()
+    public void AddRedBonus()
+    {
+        if (_nbOutputProjectile <= 5)
+        {
+            _nbOutputProjectile += 2;
+            if (_nbOutputProjectile == 3)
+            {
+                _isOutputInside = true;
+            }
+        }
+    }
+
+    public void AddBlueBonus()
+    {
+        if (_nbOutputProjectile <= 5)
+        {
+            _nbOutputProjectile += 2;
+            if (_nbOutputProjectile == 3)
+            {
+                _isOutputInside = false;
+            }
+        }
+    }
+
+    public void ResetOutputProjectile()
+    {
+        _nbOutputProjectile = 1;
+    }
+
+    /*public void ResetProjectileSize()
     {
         _currentProjectileSize = _projectileSize;
+    }*/
+
+    private void Update()
+    {
+        //Debug.Log(_nbOutputProjectile);
     }
 }

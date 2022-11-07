@@ -2,17 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlueBonus : MonoBehaviour
+public class BlueBonus :Bonus
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void ApplyBonus(PlayerBonus plBonus)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        plBonus.ApplyBlueBonus();
     }
 }
