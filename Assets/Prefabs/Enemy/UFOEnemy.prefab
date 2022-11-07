@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f04b6842f43ed742be8f6e9f776c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _points: 0
+  _points: 750
   _scoreScript: {fileID: 0}
   _health: 1
   _chanceToDropBonus: 1
@@ -184,6 +184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _waypoints: []
+  loop: 0
   _moveSpeed: 2
   _startOnLeft: 0
 --- !u!1 &4304933967302539158

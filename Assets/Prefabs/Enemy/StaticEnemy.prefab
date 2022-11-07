@@ -143,6 +143,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f04b6842f43ed742be8f6e9f776c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _points: 100
+  _scoreScript: {fileID: 0}
   _health: 1
   _chanceToDropBonus: 1
   _bonusPrefabs:
