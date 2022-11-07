@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,14 +6,21 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] int _points;
-    [SerializeField] Score _scoreScript;
     [SerializeField] int _health;
     [SerializeField] float _chanceToDropBonus;
     [SerializeField] GameObject[] _bonusPrefabs;
+    PlayerBonus _bonusScript;
+    Score _scoreScript;
 
     private void Reset()
     {
         _health = 1;
+    }
+
+    private void Start()
+    {
+        _bonusScript = GameObject.Find("Player").GetComponent<PlayerBonus>();
+        _scoreScript = GameObject.Find("ScoreManager").GetComponent<Score>();
     }
 
     void OnValidate()
@@ -25,7 +33,10 @@ public class EnemyHealth : MonoBehaviour
         _health--;
         if (_health <= 0)
         {
-            _scoreScript.AddAmountToScore(_points);
+            if (_scoreScript != null)
+            {
+                _scoreScript.AddAmountToScore(_points);
+            }
             DropBonus();
             Destroy(gameObject);
         }
@@ -33,11 +44,19 @@ public class EnemyHealth : MonoBehaviour
 
     void DropBonus()
     {
-        bool canDrop = Random.Range(0, 1) <= _chanceToDropBonus;
-        if (canDrop && _bonusPrefabs.Length > 0)
+        if (_scoreScript != null)
         {
-            int indexBonus = Random.Range(0, _bonusPrefabs.Length); //A MODIFIER EN FONCTION DU NOMBRE DE BONUS QU'IL RESTE
-            Instantiate(_bonusPrefabs[indexBonus], transform.position, Quaternion.identity);
+            bool canDrop = Random.Range(0, 1) <= _chanceToDropBonus;
+            if (canDrop && _bonusPrefabs.Length > 0 && _bonusScript.GetBonusesSize() > 0)
+            {
+                int indexBonus;
+                do
+                {
+                    indexBonus = Random.Range(0, _bonusPrefabs.Length);
+                } while (!_bonusScript.ContainsBonus(_bonusScript.GetBonusInEnumAt(indexBonus)));
+
+                Instantiate(_bonusPrefabs[indexBonus], transform.position, Quaternion.identity);
+            }
         }
     }
 

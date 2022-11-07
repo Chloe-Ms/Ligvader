@@ -144,11 +144,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f04b6842f43ed742be8f6e9f776c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _points: 0
-  _scoreScript: {fileID: 0}
+  _points: 300
+  _player: {fileID: 2637012773384253500, guid: 6c4d49fba8e60704db6b1791cd34aeec, type: 3}
+  _scoreManager: {fileID: 0}
   _health: 1
   _chanceToDropBonus: 1
   _bonusPrefabs:
+  - {fileID: 8845017225537953109, guid: e96abc7dc146dc24daab318531209a9d, type: 3}
   - {fileID: 8845017225537953109, guid: 8927c46f78f03804fa3ac623833f3969, type: 3}
 --- !u!50 &5557272818445872667
 Rigidbody2D:
