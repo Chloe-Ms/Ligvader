@@ -9,8 +9,20 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage()
     {
-        _health--;
-        _playerBonus.ClearBonuses();
+        if (_playerBonus != null)
+        {
+            //If the player has no power up
+            if (_playerBonus.GetBonusesSize() == _playerBonus.GetSizeBonusEnum())
+            {
+                _health--;
+            }
+            _playerBonus.ClearBonuses();
+        } else
+        {
+            _health--;
+        }
+        
+        
         if (_health <= 0)
         {
             Debug.Log("Player death");
@@ -23,6 +35,11 @@ public class PlayerHealth : MonoBehaviour
         {
             TakeDamage();
             Destroy(collision.gameObject);
+        }
+
+        if (collision.gameObject.tag == "Enemy")
+        {
+            TakeDamage();
         }
     }
 }

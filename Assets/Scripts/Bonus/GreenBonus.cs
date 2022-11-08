@@ -2,17 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GreenBonus : MonoBehaviour
+public class GreenBonus : Bonus
 {
-    // Start is called before the first frame update
+    [SerializeField] private float _timeBeforeStart;
+    [SerializeField] private float _damagesBySecond;
+    [SerializeField] private float _duration = 5f;
+    private float currentDuration = 0f;
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
+    }
+    public override void ApplyBonus(PlayerBonus plBonus)
+    {
+        plBonus.ApplyGreenBonus();
     }
 }

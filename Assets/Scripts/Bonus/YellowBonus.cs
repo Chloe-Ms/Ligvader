@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class YellowBonus : Bonus
 {
-    [SerializeField] private GameObject _shield;
-    [SerializeField] private float _duration;
+    
+    [SerializeField] private float _duration = 20f;
 
     private void Reset()
     {
@@ -14,6 +14,6 @@ public class YellowBonus : Bonus
 
     public override void ApplyBonus(PlayerBonus plBonus)
     {
-        throw new System.NotImplementedException();
+        plBonus.ApplyYellowBonus(_duration);
     }
 }
