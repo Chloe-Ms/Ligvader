@@ -15,6 +15,7 @@ public enum BonusType
 public class PlayerBonus : MonoBehaviour
 {
     [SerializeField] PlayerAttack _attackScript;
+    [SerializeField] PlayerMovement _movementScript;
     List<BonusType> _bonuses;
     
 
@@ -25,16 +26,10 @@ public class PlayerBonus : MonoBehaviour
         {
             _bonuses.Add(bonus);
         }
-        Debug.Log("count " + _bonuses.Count);
     }
 
     public void ApplyRedBonus(float sizeMultiplier)
     {
-        /*foreach (var bonus in _bonuses)
-        {
-            Debug.Log(bonus);
-        }
-        Debug.Log(_bonuses.Contains(BonusType.RED));*/
         if (_bonuses.Contains(BonusType.RED))
         {
             _bonuses.Remove(BonusType.RED);
@@ -47,6 +42,20 @@ public class PlayerBonus : MonoBehaviour
         }
     }
 
+    public void ApplyBlackBonus()
+    {
+        if (_bonuses.Contains(BonusType.BLACK))
+        {
+            _bonuses.Remove(BonusType.BLACK);
+            _movementScript.SetCanMoveVertically(true);
+            _attackScript.GetComponent<SpriteRenderer>().color = Color.black;
+        }
+        else
+        {
+            Debug.Log("noir déjà fait");
+        }
+    }
+
     public void ClearBonuses()
     {
         foreach (BonusType bonus in _bonuses)
@@ -55,15 +64,12 @@ public class PlayerBonus : MonoBehaviour
         }
         //RED && BLUE
         _attackScript.ResetOutputProjectile();
+        //BLACK
+        _movementScript.ResetMovementVertically();
     }
 
     public void ApplyBlueBonus()
     {
-        /*foreach (var bonus in _bonuses)
-        {
-            Debug.Log(bonus);
-        }
-        Debug.Log(_bonuses.Contains(BonusType.BLUE));*/
         if (_bonuses.Contains(BonusType.BLUE))
         {
             _bonuses.Remove(BonusType.BLUE);

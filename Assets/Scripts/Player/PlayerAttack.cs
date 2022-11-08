@@ -55,7 +55,6 @@ public class PlayerAttack : MonoBehaviour
 
                 if ((_nbOutputProjectile == 3 && !_isOutputInside) || _nbOutputProjectile == 5) //Blue bonus, same size
                 {
-                    Debug.Log("EXT");
                     Instantiate(_projectilePrefab, _spawnsTransform[3].position, Quaternion.identity);
                     Instantiate(_projectilePrefab, _spawnsTransform[4].position, Quaternion.identity);
                 }
