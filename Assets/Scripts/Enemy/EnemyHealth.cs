@@ -28,7 +28,7 @@ public class EnemyHealth : MonoBehaviour
         if (_points < 0) _points = 0;
     }
 
-    void TakeDamage()
+    public void TakeDamage()
     {
         _health--;
         if (_health <= 0)

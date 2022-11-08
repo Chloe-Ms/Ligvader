@@ -7,7 +7,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] PlayerBonus _playerBonus;
     int _health = 1; 
 
-    void TakeDamage()
+    public void TakeDamage()
     {
         _health--;
         _playerBonus.ClearBonuses();
