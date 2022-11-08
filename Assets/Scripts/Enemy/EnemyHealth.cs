@@ -50,11 +50,11 @@ public class EnemyHealth : MonoBehaviour
             if (canDrop && _bonusPrefabs.Length > 0 && _bonusScript.GetBonusesSize() > 0)
             {
                 int indexBonus;
-                indexBonus = 4;
-                /*do
+                //indexBonus = 4;
+                do
                 {
                     indexBonus = Random.Range(0, _bonusPrefabs.Length);
-                } while (!_bonusScript.ContainsBonus(_bonusScript.GetBonusInEnumAt(indexBonus)));*/
+                } while (!_bonusScript.ContainsBonus(_bonusScript.GetBonusInEnumAt(indexBonus)));
 
                 Instantiate(_bonusPrefabs[indexBonus], transform.position, Quaternion.identity);
             }

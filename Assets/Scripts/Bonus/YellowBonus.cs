@@ -14,7 +14,6 @@ public class YellowBonus : Bonus
 
     public override void ApplyBonus(PlayerBonus plBonus)
     {
-        plBonus.ApplyBlackBonus();
         plBonus.ApplyYellowBonus(_duration);
     }
 }
