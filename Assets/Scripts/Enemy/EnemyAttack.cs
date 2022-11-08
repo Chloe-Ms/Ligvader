@@ -10,17 +10,11 @@ public class EnemyAttack : MonoBehaviour
     bool _canAttack = true;
     [SerializeField] GameObject _projectilePrefab;
     [SerializeField] Transform _spawnPosition;
-
     void Start()
     {
         StartCoroutine(Attack());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     IEnumerator Attack()
     {
@@ -33,7 +27,7 @@ public class EnemyAttack : MonoBehaviour
 
     void Shoot()
     {
-        bool canShoot = Random.Range(0, 1) <= _chanceToShoot;
+        bool canShoot = Random.Range(0f, 1f) <= _chanceToShoot;
         if (canShoot)
         {
             Instantiate(_projectilePrefab, _spawnPosition.position, Quaternion.Euler(0, 0, 180)); //180 no scope
