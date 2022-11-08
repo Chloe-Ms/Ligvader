@@ -161,6 +161,7 @@ GameObject:
   - component: {fileID: 3899381747892831050}
   - component: {fileID: -620776796611517386}
   - component: {fileID: 5557272818445872667}
+  - component: {fileID: -5956586728064370396}
   m_Layer: 0
   m_Name: ShieldEnemy
   m_TagString: Enemy
@@ -321,6 +322,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 6
+--- !u!114 &-5956586728064370396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1100007556942780471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 287f420e09ef1e945a17a0dd3bbb61d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _verticalMovement: 1
+  _speed: 2
 --- !u!1 &4304933967302539158
 GameObject:
   m_ObjectHideFlags: 0

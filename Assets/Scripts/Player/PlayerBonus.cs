@@ -17,7 +17,9 @@ public class PlayerBonus : MonoBehaviour
     [SerializeField] PlayerAttack _attackScript;
     [SerializeField] PlayerMovement _movementScript;
     [SerializeField] private GameObject _shield;
+    [SerializeField] Score _scoreScript;
     List<BonusType> _bonuses;
+    [SerializeField] int _pointsDoubleBonus = 1000;
     //YELLOW
     private float _durationY;
     private float _currentDurationY;
@@ -26,6 +28,8 @@ public class PlayerBonus : MonoBehaviour
     private float _durationG;
     private float _currentDurationG;
     private bool _isActiveG = false;
+    private float _damagesBySecond = 0f;
+    [SerializeField] GameObject _laser;
 
     void Start()
     {
@@ -47,6 +51,10 @@ public class PlayerBonus : MonoBehaviour
         } else
         {
             Debug.Log("rouge déjà fait");
+            if (_scoreScript != null)
+            {
+                _scoreScript.AddAmountToScore(_pointsDoubleBonus);
+            }
         }
     }
 
@@ -61,6 +69,10 @@ public class PlayerBonus : MonoBehaviour
         else
         {
             Debug.Log("noir déjà fait");
+            if (_scoreScript != null)
+            {
+                _scoreScript.AddAmountToScore(_pointsDoubleBonus);
+            }
         }
     }
 
@@ -75,6 +87,10 @@ public class PlayerBonus : MonoBehaviour
         else
         {
             Debug.Log("bleu déjà fait");
+            if (_scoreScript != null)
+            {
+                _scoreScript.AddAmountToScore(_pointsDoubleBonus);
+            }
         }
     }
 
@@ -82,7 +98,6 @@ public class PlayerBonus : MonoBehaviour
     {
         if (_bonuses.Contains(BonusType.YELLOW))
         {
-            
             _bonuses.Remove(BonusType.YELLOW);
             _durationY = duration;
             StartTimerBonusY();
@@ -91,20 +106,33 @@ public class PlayerBonus : MonoBehaviour
         else
         {
             Debug.Log("jaune déjà fait");
+            if (_scoreScript != null)
+            {
+                _scoreScript.AddAmountToScore(_pointsDoubleBonus);
+            }
         }
     }
 
-    public void ApplyGreenBonus()
+    public void ApplyGreenBonus(float duration, float damagesBySecond,float delayBeforeStart)
     {
         if (_bonuses.Contains(BonusType.GREEN))
         {
             _bonuses.Remove(BonusType.GREEN);
-
+            //LOAD LASER
+            _attackScript.IsLaserActive = true;
+            _durationG = duration;
+            _damagesBySecond = damagesBySecond;
+            StartTimerBonusG();
+            //DIMINUER LA VITESSE
             _attackScript.GetComponent<SpriteRenderer>().color = Color.green;
         }
         else
         {
             Debug.Log("vert déjà fait");
+            if (_scoreScript != null)
+            {
+                _scoreScript.AddAmountToScore(_pointsDoubleBonus);
+            }
         }
     }
     public void ClearBonuses()
@@ -121,6 +149,7 @@ public class PlayerBonus : MonoBehaviour
         EndTimerBonusY();
         //GREEN
         EndTimerBonusG();
+        //AUGMENTER LA VITESSE
     }
 
     public void StartTimerBonusY()
@@ -133,7 +162,9 @@ public class PlayerBonus : MonoBehaviour
     public void StartTimerBonusG()
     {
         _currentDurationG = 0f;
+        _attackScript.IsLaserActive = true;
         _isActiveG = true;
+        _laser.SetActive(true);
     }
     public void EndTimerBonusY()
     {
@@ -145,6 +176,8 @@ public class PlayerBonus : MonoBehaviour
     public void EndTimerBonusG()
     {
         _isActiveG = false;
+        _attackScript.IsLaserActive = false;
+        _laser.SetActive(false);
         _bonuses.Add(BonusType.GREEN);
     }
 
