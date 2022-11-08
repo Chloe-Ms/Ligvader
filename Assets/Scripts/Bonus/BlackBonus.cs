@@ -6,6 +6,6 @@ public class BlackBonus : Bonus
 {
     public override void ApplyBonus(PlayerBonus plBonus)
     {
-        throw new System.NotImplementedException();
+        plBonus.ApplyBlackBonus();
     }
 }
