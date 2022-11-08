@@ -269,7 +269,6 @@ MonoBehaviour:
   _timeToReload: 0.4
   _spawnsTransform: []
   _projectilePrefab: {fileID: 738048596899912352, guid: 82aef88fae8d84a4fb75a075c6a806ae, type: 3}
-  _nbOutputProjectile: 1
 --- !u!114 &1859850377648415628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,6 +295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackScript: {fileID: 2459279083596584575}
+  _movementScript: {fileID: 3491882452592699279}
 --- !u!50 &3432528394033043217
 Rigidbody2D:
   serializedVersion: 4

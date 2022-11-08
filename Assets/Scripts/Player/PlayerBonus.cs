@@ -58,7 +58,7 @@ public class PlayerBonus : MonoBehaviour
 
     public void ClearBonuses()
     {
-        foreach (BonusType bonus in _bonuses)
+        foreach (BonusType bonus in Enum.GetValues(typeof(BonusType)))
         {
             _bonuses.Add(bonus);
         }

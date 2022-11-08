@@ -100,7 +100,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -150,6 +150,7 @@ MonoBehaviour:
   _bonusPrefabs:
   - {fileID: 8845017225537953109, guid: e96abc7dc146dc24daab318531209a9d, type: 3}
   - {fileID: 8845017225537953109, guid: 8927c46f78f03804fa3ac623833f3969, type: 3}
+  - {fileID: 8845017225537953109, guid: e469a7c6193320741baaa59c30dfe9f4, type: 3}
 --- !u!50 &5557272818445872667
 Rigidbody2D:
   serializedVersion: 4

@@ -33,12 +33,10 @@ public class PlayerMovement : MonoBehaviour
 
     void MovePlayer(){
         Vector2 playerPos = transform.position;
+        playerPos.x = Mathf.Clamp(playerPos.x + (_speed * Time.deltaTime * _moveInput.x), -_screenBounds.x + (_renderer.bounds.size.x / 2f), _screenBounds.x - (_renderer.bounds.size.x / 2f));
         if (_canMoveVertically)
         {
-            playerPos.x = Mathf.Clamp(playerPos.x + (_speed * Time.deltaTime * _moveInput.x), -_screenBounds.x + (_renderer.bounds.size.x / 2f), _screenBounds.x - (_renderer.bounds.size.x / 2f));
-        } else
-        {
-
+            playerPos.y = Mathf.Clamp(playerPos.y + (_speed * Time.deltaTime * _moveInput.y), -_screenBounds.y + (_renderer.bounds.size.y / 2f), _screenBounds.y - (_renderer.bounds.size.y / 2f));
         }
         
         transform.position = playerPos;
