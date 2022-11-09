@@ -39,7 +39,7 @@ public class PlayerBonus : MonoBehaviour
         _bonuses = new List<BonusType>();
         foreach(BonusType bonus in Enum.GetValues(typeof(BonusType)))
         {
-            _bonuses.Add(bonus);
+            AddBonus(bonus);
         }
     }
 
@@ -141,7 +141,7 @@ public class PlayerBonus : MonoBehaviour
     {
         foreach (BonusType bonus in Enum.GetValues(typeof(BonusType)))
         {
-            _bonuses.Add(bonus);
+            AddBonus(bonus);
         }
         //RED && BLUE
         _attackScript.ResetOutputProjectile();
@@ -172,7 +172,8 @@ public class PlayerBonus : MonoBehaviour
     {
         _isActiveY = false;
         _shield.SetActive(false);
-        _bonuses.Add(BonusType.YELLOW);
+         AddBonus(BonusType.YELLOW);
+        
     }
 
     public void EndTimerBonusG()
@@ -182,7 +183,7 @@ public class PlayerBonus : MonoBehaviour
         _laser.SetActive(false); //Laser is not visible
         _attackScript.IsLaserActive = false; //Not attacking anymore
         _currentDurationG = 0f;
-        _bonuses.Add(BonusType.GREEN);
+        AddBonus(BonusType.GREEN);
     }
 
     #region LIST BONUS
