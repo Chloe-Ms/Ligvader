@@ -14,9 +14,13 @@ public class PlayerHealth : MonoBehaviour
             //If the player has no power up
             if (_playerBonus.GetBonusesSize() == _playerBonus.GetSizeBonusEnum())
             {
+                
                 _health--;
+                
             }
+            Debug.Log("BONUS "+_playerBonus.GetBonusesSize());
             _playerBonus.ClearBonuses();
+            Debug.Log(_health);
         } else
         {
             _health--;
