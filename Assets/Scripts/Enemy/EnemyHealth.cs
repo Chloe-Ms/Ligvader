@@ -7,6 +7,17 @@ public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] int _points;
     [SerializeField] float _health;
+    public float CurrentHealth
+    {
+        get { return _health; }
+        set {
+            _health = value;
+            if (_health < 0)
+            {
+                _health = 0;
+            }
+        }
+    }
     [SerializeField] float _chanceToDropBonus;
     [SerializeField] GameObject[] _bonusPrefabs;
     PlayerBonus _bonusScript;
