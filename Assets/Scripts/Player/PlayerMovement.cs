@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float _speed;
+    private float _currentSpeed;
     private Vector2 _moveInput;
     private Vector2 _screenBounds;
     private Renderer _renderer;
@@ -24,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         _spawnPosition = transform.position;
+        _currentSpeed = _speed;
     }
 
     void Update()
@@ -57,5 +59,10 @@ public class PlayerMovement : MonoBehaviour
     {
         SetCanMoveVertically(false);
         transform.position = new Vector3(transform.position.x, _spawnPosition.y, transform.position.z);
+    }
+
+    public void ChangeSpeed(float multiplier)
+    {
+        _currentSpeed = multiplier * _speed;
     }
 }

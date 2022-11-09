@@ -28,7 +28,6 @@ public class PlayerBonus : MonoBehaviour
     private float _durationG;
     private float _currentDurationG;
     private bool _isActiveG = false;
-    private float _damagesBySecond = 0f;
     [SerializeField] GameObject _laser;
 
     void Start()
@@ -113,16 +112,17 @@ public class PlayerBonus : MonoBehaviour
         }
     }
 
-    public void ApplyGreenBonus()
+    public void ApplyGreenBonus(float multiplier)
     {
         if (_bonuses.Contains(BonusType.GREEN))
         {
             _bonuses.Remove(BonusType.GREEN);
-            //LOAD LASER
+            
             _attackScript.IsLaserActive = true;
 
             StartTimerBonusG();
-            //DIMINUER LA VITESSE
+
+            _movementScript.ChangeSpeed(multiplier);
             _attackScript.GetComponent<SpriteRenderer>().color = Color.green;
         }
         else
@@ -149,6 +149,7 @@ public class PlayerBonus : MonoBehaviour
         //GREEN
         EndTimerBonusG();
         //AUGMENTER LA VITESSE
+        _movementScript.ChangeSpeed(1f);
     }
 
     public void StartTimerBonusY()

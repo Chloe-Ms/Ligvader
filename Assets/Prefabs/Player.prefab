@@ -448,7 +448,7 @@ MonoBehaviour:
   _shield: {fileID: 1719583298081186727}
   _scoreScript: {fileID: 0}
   _pointsDoubleBonus: 1000
-  _laser: {fileID: 0}
+  _laser: {fileID: 7319075905640134309}
 --- !u!50 &3432528394033043217
 Rigidbody2D:
   serializedVersion: 4

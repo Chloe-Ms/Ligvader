@@ -88,10 +88,15 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    private void TakeContinuousDamage(float damagesPerSec)
+    public void TakeContinuousDamage(float damagesPerSec)
     {
         _isInLaser = true;
         _damageFromPlayer = damagesPerSec;
+    }
+
+    public void StopContinuousDamage()
+    {
+        _isInLaser = false;
     }
 
     private void Update()

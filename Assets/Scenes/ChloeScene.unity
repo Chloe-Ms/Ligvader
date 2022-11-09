@@ -1231,6 +1231,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 5926159975892793830, guid: 6c4d49fba8e60704db6b1791cd34aeec, type: 3}
+      propertyPath: _scoreScript
+      value: 
+      objectReference: {fileID: 1961508219}
     - target: {fileID: 7635486729519268497, guid: 6c4d49fba8e60704db6b1791cd34aeec, type: 3}
       propertyPath: m_Layer
       value: 6
