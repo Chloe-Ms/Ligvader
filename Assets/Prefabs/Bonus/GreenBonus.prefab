@@ -147,6 +147,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 0.75
-  _timeBeforeStart: 0.4
-  _damagesBySecond: 1
+  _speedReductionGreenBonus: 0.75
   _duration: 5

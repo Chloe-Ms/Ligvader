@@ -112,16 +112,15 @@ public class PlayerBonus : MonoBehaviour
         }
     }
 
-    public void ApplyGreenBonus(float multiplier)
+    public void ApplyGreenBonus(float multiplier,float duration)
     {
         if (_bonuses.Contains(BonusType.GREEN))
         {
             _bonuses.Remove(BonusType.GREEN);
-            
+            _durationG = duration;
             _attackScript.IsLaserActive = true;
 
             StartTimerBonusG();
-
             _movementScript.ChangeSpeed(multiplier);
             _attackScript.GetComponent<SpriteRenderer>().color = Color.green;
         }
