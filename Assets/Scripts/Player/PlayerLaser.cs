@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerLaser : MonoBehaviour
 {
     [SerializeField] private float _timeBeforeStart;
-    [SerializeField] private float _damagesBySecond;
+    [SerializeField] private float _damagesBySecond = 1f;
     [SerializeField] private float _duration = 5f;
     private float _durationLeftActivation;
     private float _durationLeft;
@@ -53,16 +53,19 @@ public class PlayerLaser : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        _durationLeft = 0f;
         EnemyHealth health = collision.gameObject.GetComponent<EnemyHealth>();
         if (health != null)
         {
-
+            health.TakeContinuousDamage(_damagesBySecond);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        
+        EnemyHealth health = collision.gameObject.GetComponent<EnemyHealth>();
+        if (health != null)
+        {
+            health.StopContinuousDamage();
+        }
     }
 }
