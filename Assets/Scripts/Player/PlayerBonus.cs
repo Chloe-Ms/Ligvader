@@ -29,6 +29,10 @@ public class PlayerBonus : MonoBehaviour
     private float _currentDurationG;
     private bool _isActiveG = false;
     [SerializeField] GameObject _laser;
+    private float _durationLeftActivation;
+    private bool _isStartingLaser = false;
+    [SerializeField] private float _timeBeforeStartLaser;
+
 
     void Start()
     {
@@ -160,10 +164,9 @@ public class PlayerBonus : MonoBehaviour
 
     public void StartTimerBonusG()
     {
-        _currentDurationG = 0f;
-        _attackScript.IsLaserActive = true;
-        _isActiveG = true;
-        _laser.SetActive(true);
+        _attackScript.IsLaserActive = true; //Player can't shoot when the laser is loading
+        _isStartingLaser = true; //Start timer for loading the laser
+        _durationLeftActivation = 0f; //Reset timer
     }
     public void EndTimerBonusY()
     {
@@ -174,9 +177,11 @@ public class PlayerBonus : MonoBehaviour
 
     public void EndTimerBonusG()
     {
-        _isActiveG = false;
-        _attackScript.IsLaserActive = false;
-        _laser.SetActive(false);
+        _isStartingLaser = false; //Laser is not starting
+        _isActiveG = false; //Laser is not attacking
+        _laser.SetActive(false); //Laser is not visible
+        _attackScript.IsLaserActive = false; //Not attacking anymore
+        _currentDurationG = 0f;
         _bonuses.Add(BonusType.GREEN);
     }
 
@@ -229,13 +234,22 @@ public class PlayerBonus : MonoBehaviour
                 EndTimerBonusY();
             }
         }
+
+        if (_isStartingLaser)
+        {
+            _durationLeftActivation += Time.deltaTime;
+            if (_durationLeftActivation > _timeBeforeStartLaser)
+            {
+                _isStartingLaser = false; //Stop timer loading the laser
+                _isActiveG = true; //Start timer laser
+                _laser.SetActive(true); //Activate the gameObject
+                _currentDurationG = 0f; //Reset timer laser attack
+            }
+        }
         if (_isActiveG)
         {
-            if (_currentDurationG < _durationG)
-            {
-                _currentDurationG += Time.deltaTime;
-            }
-            else
+            _currentDurationG += Time.deltaTime;
+            if (_currentDurationG > _durationG)
             {
                 EndTimerBonusG();
             }
