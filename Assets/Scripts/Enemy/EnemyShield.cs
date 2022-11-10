@@ -15,6 +15,15 @@ public class EnemyShield : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "PlayerProjectile")
+        {
+            TakeDamage();
+            Destroy(collision.gameObject);
+        }
+    }
+
     void TakeDamage()
     {
         _healthShield--;
