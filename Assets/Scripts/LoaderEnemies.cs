@@ -32,14 +32,14 @@ public class LoaderEnemies : MonoBehaviour
     }
     void Update()
     {
-        for (int i = 0; i < _mobileEnemies.Count; i++)
+        /*for (int i = 0; i < _mobileEnemies.Count; i++)
         {
             if (_mobileEnemies[i].loadTime <= Time.timeSinceLevelLoad && !_mobileEnemies[i].deleted)
             {
                 Instantiate(_mobileEnemies[i]._objectLoad);
                 _mobileEnemies[i].deleted = true;
             }
-        }
+        }*/
             
     }
 

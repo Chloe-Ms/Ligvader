@@ -52,16 +52,50 @@ public class EnemyHealth : MonoBehaviour
 
             Score.Instance.AddAmountToScore(_points);
             DropBonus();
-            
+
             if (transform.parent != null && transform.parent.tag == "MobileEnemyPattern")
             {
                 Destroy(transform.parent.gameObject);
-            } else if (transform.parent != null && transform.parent.tag == "StaticEnemyPattern" && transform.parent.childCount == 1) //This is the last enemy of the parent so we destroy the parent
+            }
+            
+            //Cas avec le shield
+            else if (transform.parent != null && transform.parent.transform.parent != null && transform.parent.transform.parent.tag == "StaticEnemyPattern"
+                && transform.parent.tag == "ShieldEnemy" && transform.parent.transform.parent.childCount == 1)
             {
+                Debug.Log("AA");
+                Destroy(transform.parent.transform.parent.gameObject);
+                LoaderEnemies.Instance.LoadNewStaticEnemies();
+            }
+            //Suppression du dossier des Ennemis statiques
+            else if (transform.parent != null && transform.parent.transform.parent != null && transform.parent.transform.parent.tag == "StaticEnemyPattern"
+                && transform.parent.tag == "ShieldEnemy" && transform.parent.transform.parent.childCount != 1)
+            {
+                Debug.Log("BB");
+                Destroy(transform.parent.gameObject);
+            }
+            else if (transform.parent != null && transform.parent.transform.parent != null && transform.parent.transform.parent.tag == "StaticEnemyPattern"
+                && transform.parent.tag != "ShieldEnemy" && transform.parent.transform.parent.childCount == 1 && transform.parent.childCount == 1)
+            {
+                Debug.Log("CC");
+                Destroy(transform.parent.transform.parent.gameObject);
+                LoaderEnemies.Instance.LoadNewStaticEnemies();
+            }
+            //Suppression du dossier des Ennemis statiques
+            else if (transform.parent != null && transform.parent.transform.parent != null && transform.parent.transform.parent.tag == "StaticEnemyPattern"
+                && transform.parent.tag != "ShieldEnemy" && transform.parent.transform.parent.childCount != 1 && transform.parent.childCount == 1)
+            {
+                Debug.Log("DD");
+                Destroy(transform.parent.gameObject);
+            }
+            else if (transform.parent != null && transform.parent.tag == "StaticEnemyPattern" && transform.parent.childCount == 1 && transform.parent.tag != "ShieldEnemy")
+            {
+                Debug.Log("DD");
                 Destroy(transform.parent.gameObject);
                 LoaderEnemies.Instance.LoadNewStaticEnemies();
-            } else
+            }
+            else
             {
+                Debug.Log("EE");
                 Destroy(gameObject);
             }
             
