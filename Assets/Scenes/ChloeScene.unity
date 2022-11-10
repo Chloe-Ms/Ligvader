@@ -450,6 +450,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShieldEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 8554182124498626848, guid: 54eb4d05c1d61604a9af4ba4f9cb3bda, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8554182124498626851, guid: 54eb4d05c1d61604a9af4ba4f9cb3bda, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -561,15 +565,15 @@ MonoBehaviour:
     loadTime: 0
     deleted: 0
   - _objectLoad: {fileID: 7100923809002885398, guid: 364f07eb001effd428b3b485fe752c76, type: 3}
-    loadTime: 4
+    loadTime: 15
     deleted: 0
   - _objectLoad: {fileID: 6284817528374437356, guid: 74cf31b159c41584e9d4f1b222ba0829, type: 3}
-    loadTime: 8
+    loadTime: 30
     deleted: 0
   _staticEnemies:
   - {fileID: 9143308801336734515, guid: d296d458409c86e448a446d729742823, type: 3}
   - {fileID: 4633216329277558384, guid: 733965e69788bc540ba7910c662d6ae2, type: 3}
-  - {fileID: 2168984480811621150, guid: d1210e2aff6522041b0d16a1a847056d, type: 3}
+  - {fileID: 8580541752614735738, guid: 67e9475fa48dd94499d211929c19a2e9, type: 3}
 --- !u!4 &1789174630
 Transform:
   m_ObjectHideFlags: 0
@@ -778,6 +782,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 591669607512163627, guid: 6c4d49fba8e60704db6b1791cd34aeec, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1911743380931169407, guid: 6c4d49fba8e60704db6b1791cd34aeec, type: 3}
       propertyPath: m_RootOrder
       value: 6

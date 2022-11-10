@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 8554182124498626850}
   m_Layer: 0
   m_Name: ShieldEnemy
-  m_TagString: Untagged
+  m_TagString: ShieldEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -373,7 +373,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _points: 100
   _health: 1
-  _chanceToDropBonus: 1
+  _chanceToDropBonus: 0.5
   _bonusPrefabs:
   - {fileID: 8845017225537953109, guid: e96abc7dc146dc24daab318531209a9d, type: 3}
   - {fileID: 8845017225537953109, guid: 8927c46f78f03804fa3ac623833f3969, type: 3}
