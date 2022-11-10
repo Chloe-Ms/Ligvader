@@ -7,10 +7,26 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] PlayerBonus _playerBonus;
     int _health = 1; 
 
-    void TakeDamage()
+    public void TakeDamage()
     {
-        _health--;
-        _playerBonus.ClearBonuses();
+        if (_playerBonus != null)
+        {
+            //If the player has no power up
+            if (_playerBonus.GetBonusesSize() == _playerBonus.GetSizeBonusEnum())
+            {
+                
+                _health--;
+                
+            }
+            Debug.Log("BONUS "+_playerBonus.GetBonusesSize());
+            _playerBonus.ClearBonuses();
+            Debug.Log(_health);
+        } else
+        {
+            _health--;
+        }
+        
+        
         if (_health <= 0)
         {
             Debug.Log("Player death");
@@ -23,6 +39,11 @@ public class PlayerHealth : MonoBehaviour
         {
             TakeDamage();
             Destroy(collision.gameObject);
+        }
+
+        if (collision.gameObject.tag == "Enemy")
+        {
+            TakeDamage();
         }
     }
 }

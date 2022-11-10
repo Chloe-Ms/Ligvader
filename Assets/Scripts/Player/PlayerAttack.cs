@@ -13,6 +13,11 @@ public class PlayerAttack : MonoBehaviour
     private bool _isOutputInside = true;
     private Vector3 _projectileSize;
     private Vector3 _currentProjectileSize;
+    private bool _isLaserActive = false;
+    public bool IsLaserActive
+    {
+        set { _isLaserActive = value; }
+    }
 
     private void Start()
     {
@@ -44,8 +49,11 @@ public class PlayerAttack : MonoBehaviour
     IEnumerator Shoot(){
         if (_spawnsTransform.Length >= _nbOutputProjectile) //If number of outputs is bigger than number of transform
         {
-            Instantiate(_projectilePrefab, _spawnsTransform[0].position, Quaternion.identity);
-                if ((_nbOutputProjectile == 3 && _isOutputInside) || _nbOutputProjectile == 5)
+            if (!_isLaserActive)
+            {
+                Instantiate(_projectilePrefab, _spawnsTransform[0].position, Quaternion.identity);
+            }
+            if ((_nbOutputProjectile == 3 && _isOutputInside) || _nbOutputProjectile == 5)
                 { //Red bonus, bigger size
                     Projectile proj = Instantiate(_projectilePrefab, _spawnsTransform[1].position, Quaternion.identity);
                     proj.gameObject.transform.localScale = _currentProjectileSize;
@@ -55,7 +63,6 @@ public class PlayerAttack : MonoBehaviour
 
                 if ((_nbOutputProjectile == 3 && !_isOutputInside) || _nbOutputProjectile == 5) //Blue bonus, same size
                 {
-                    Debug.Log("EXT");
                     Instantiate(_projectilePrefab, _spawnsTransform[3].position, Quaternion.identity);
                     Instantiate(_projectilePrefab, _spawnsTransform[4].position, Quaternion.identity);
                 }
@@ -99,13 +106,4 @@ public class PlayerAttack : MonoBehaviour
         _nbOutputProjectile = 1;
     }
 
-    /*public void ResetProjectileSize()
-    {
-        _currentProjectileSize = _projectileSize;
-    }*/
-
-    private void Update()
-    {
-        //Debug.Log(_nbOutputProjectile);
-    }
 }
