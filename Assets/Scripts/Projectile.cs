@@ -25,7 +25,11 @@ public class Projectile : MonoBehaviour
         //If the projectile is outside of the screen, it's destroyed
         if (transform.position.y - (_renderer.bounds.size.y/2f) > _screenBounds.y){
             Destroy(gameObject);
-        }   
+        }
+        if (transform.position.y + (_renderer.bounds.size.y / 2f) < -_screenBounds.y)
+        {
+            Destroy(gameObject);
+        }
     }
 
 }

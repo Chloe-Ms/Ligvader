@@ -15,26 +15,36 @@ public enum BonusType
 public class PlayerBonus : MonoBehaviour
 {
     [SerializeField] PlayerAttack _attackScript;
+    [SerializeField] PlayerMovement _movementScript;
+    [SerializeField] private GameObject _shield;
+    [SerializeField] Score _scoreScript;
     List<BonusType> _bonuses;
-    
+    [SerializeField] int _pointsDoubleBonus = 1000;
+    //YELLOW
+    private float _durationY;
+    private float _currentDurationY;
+    private bool _isActiveY = false;
+    //GREEN
+    private float _durationG;
+    private float _currentDurationG;
+    private bool _isActiveG = false;
+    [SerializeField] GameObject _laser;
+    private float _durationLeftActivation;
+    private bool _isStartingLaser = false;
+    [SerializeField] private float _timeBeforeStartLaser;
+
 
     void Start()
     {
         _bonuses = new List<BonusType>();
         foreach(BonusType bonus in Enum.GetValues(typeof(BonusType)))
         {
-            _bonuses.Add(bonus);
+            AddBonus(bonus);
         }
-        Debug.Log("count " + _bonuses.Count);
     }
 
     public void ApplyRedBonus(float sizeMultiplier)
     {
-        /*foreach (var bonus in _bonuses)
-        {
-            Debug.Log(bonus);
-        }
-        Debug.Log(_bonuses.Contains(BonusType.RED));*/
         if (_bonuses.Contains(BonusType.RED))
         {
             _bonuses.Remove(BonusType.RED);
@@ -44,37 +54,139 @@ public class PlayerBonus : MonoBehaviour
         } else
         {
             Debug.Log("rouge déjà fait");
+            if (_scoreScript != null)
+            {
+                _scoreScript.AddAmountToScore(_pointsDoubleBonus);
+            }
         }
     }
 
-    public void ClearBonuses()
+    public void ApplyBlackBonus()
     {
-        foreach (BonusType bonus in _bonuses)
+        if (_bonuses.Contains(BonusType.BLACK))
         {
-            _bonuses.Add(bonus);
+            _bonuses.Remove(BonusType.BLACK);
+            _movementScript.SetCanMoveVertically(true);
+            _attackScript.GetComponent<SpriteRenderer>().color = Color.black;
         }
-        //RED && BLUE
-        _attackScript.ResetOutputProjectile();
+        else
+        {
+            Debug.Log("noir déjà fait");
+            if (_scoreScript != null)
+            {
+                _scoreScript.AddAmountToScore(_pointsDoubleBonus);
+            }
+        }
     }
 
     public void ApplyBlueBonus()
     {
-        /*foreach (var bonus in _bonuses)
-        {
-            Debug.Log(bonus);
-        }
-        Debug.Log(_bonuses.Contains(BonusType.BLUE));*/
         if (_bonuses.Contains(BonusType.BLUE))
         {
             _bonuses.Remove(BonusType.BLUE);
             _attackScript.AddBlueBonus();
             _attackScript.GetComponent<SpriteRenderer>().color = Color.blue;
-        } else
+        }
+        else
         {
             Debug.Log("bleu déjà fait");
+            if (_scoreScript != null)
+            {
+                _scoreScript.AddAmountToScore(_pointsDoubleBonus);
+            }
         }
     }
 
+    public void ApplyYellowBonus(float duration)
+    {
+        if (_bonuses.Contains(BonusType.YELLOW))
+        {
+            _bonuses.Remove(BonusType.YELLOW);
+            _durationY = duration;
+            StartTimerBonusY();
+            _attackScript.GetComponent<SpriteRenderer>().color = Color.yellow;
+        }
+        else
+        {
+            Debug.Log("jaune déjà fait");
+            if (_scoreScript != null)
+            {
+                _scoreScript.AddAmountToScore(_pointsDoubleBonus);
+            }
+        }
+    }
+
+    public void ApplyGreenBonus(float multiplier,float duration)
+    {
+        if (_bonuses.Contains(BonusType.GREEN))
+        {
+            _bonuses.Remove(BonusType.GREEN);
+            _durationG = duration;
+            _attackScript.IsLaserActive = true;
+
+            StartTimerBonusG();
+            _movementScript.ChangeSpeed(multiplier);
+            _attackScript.GetComponent<SpriteRenderer>().color = Color.green;
+        }
+        else
+        {
+            Debug.Log("vert déjà fait");
+            if (_scoreScript != null)
+            {
+                _scoreScript.AddAmountToScore(_pointsDoubleBonus);
+            }
+        }
+    }
+    public void ClearBonuses()
+    {
+        foreach (BonusType bonus in Enum.GetValues(typeof(BonusType)))
+        {
+            AddBonus(bonus);
+        }
+        //RED && BLUE
+        _attackScript.ResetOutputProjectile();
+        //BLACK
+        _movementScript.ResetMovementVertically();
+        //YELLOW
+        EndTimerBonusY();
+        //GREEN
+        EndTimerBonusG();
+        //AUGMENTER LA VITESSE
+        _movementScript.ChangeSpeed(1f);
+    }
+
+    public void StartTimerBonusY()
+    {
+        _currentDurationY = 0f;
+        _isActiveY = true;
+        _shield.SetActive(true);
+    }
+
+    public void StartTimerBonusG()
+    {
+        _attackScript.IsLaserActive = true; //Player can't shoot when the laser is loading
+        _isStartingLaser = true; //Start timer for loading the laser
+        _durationLeftActivation = 0f; //Reset timer
+    }
+    public void EndTimerBonusY()
+    {
+        _isActiveY = false;
+        _shield.SetActive(false);
+         AddBonus(BonusType.YELLOW);
+        
+    }
+
+    public void EndTimerBonusG()
+    {
+        _isStartingLaser = false; //Laser is not starting
+        _isActiveG = false; //Laser is not attacking
+        _laser.SetActive(false); //Laser is not visible
+        _attackScript.IsLaserActive = false; //Not attacking anymore
+        _currentDurationG = 0f;
+        AddBonus(BonusType.GREEN);
+    }
+
+    #region LIST BONUS
     public int GetBonusesSize()
     {
         return _bonuses.Count;
@@ -102,5 +214,46 @@ public class PlayerBonus : MonoBehaviour
     {
         Array values = Enum.GetValues(typeof(BonusType));
         return (BonusType) values.GetValue(index);
+    }
+    public int GetSizeBonusEnum()
+    {
+        Array values = Enum.GetValues(typeof(BonusType));
+        return values.Length;
+    }
+    #endregion
+
+    private void Update()
+    {
+        if (_isActiveY)
+        {
+            if (_currentDurationY < _durationY)
+            {
+                _currentDurationY += Time.deltaTime;
+            }
+            else
+            {
+                EndTimerBonusY();
+            }
+        }
+
+        if (_isStartingLaser)
+        {
+            _durationLeftActivation += Time.deltaTime;
+            if (_durationLeftActivation > _timeBeforeStartLaser)
+            {
+                _isStartingLaser = false; //Stop timer loading the laser
+                _isActiveG = true; //Start timer laser
+                _laser.SetActive(true); //Activate the gameObject
+                _currentDurationG = 0f; //Reset timer laser attack
+            }
+        }
+        if (_isActiveG)
+        {
+            _currentDurationG += Time.deltaTime;
+            if (_currentDurationG > _durationG)
+            {
+                EndTimerBonusG();
+            }
+        }
     }
 }
