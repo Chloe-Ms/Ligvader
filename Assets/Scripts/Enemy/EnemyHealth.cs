@@ -21,7 +21,6 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] float _chanceToDropBonus;
     [SerializeField] GameObject[] _bonusPrefabs;
     PlayerBonus _bonusScript;
-    Score _scoreScript;
     bool _isInLaser = false;
     float _damageFromPlayer = 0f;
 
@@ -33,7 +32,6 @@ public class EnemyHealth : MonoBehaviour
     private void Start()
     {
         _bonusScript = GameObject.Find("Player").GetComponent<PlayerBonus>();
-        _scoreScript = GameObject.Find("ScoreManager").GetComponent<Score>();
     }
 
     void OnValidate()
@@ -51,31 +49,38 @@ public class EnemyHealth : MonoBehaviour
     {
         if (_health <= 0f)
         {
-            if (_scoreScript != null)
-            {
-                _scoreScript.AddAmountToScore(_points);
-            }
+
+            Score.Instance.AddAmountToScore(_points);
             DropBonus();
-            Destroy(gameObject);
+            
+            if (transform.parent != null && transform.parent.tag == "MobileEnemyPattern")
+            {
+                Destroy(transform.parent.gameObject);
+            } else if (transform.parent != null && transform.parent.tag == "StaticEnemyPattern" && transform.parent.childCount == 1) //This is the last enemy of the parent so we destroy the parent
+            {
+                Destroy(transform.parent.gameObject);
+                LoaderEnemies.Instance.LoadNewStaticEnemies();
+            } else
+            {
+                Destroy(gameObject);
+            }
+            
         }
     }
 
     void DropBonus()
     {
-        if (_scoreScript != null)
+        bool canDrop = Random.Range(0, 1) <= _chanceToDropBonus;
+        if (canDrop && _bonusPrefabs.Length > 0 && _bonusScript.GetBonusesSize() > 0)
         {
-            bool canDrop = Random.Range(0, 1) <= _chanceToDropBonus;
-            if (canDrop && _bonusPrefabs.Length > 0 && _bonusScript.GetBonusesSize() > 0)
+            int indexBonus;
+            //indexBonus = 4;
+            do
             {
-                int indexBonus;
-                //indexBonus = 4;
-                do
-                {
-                    indexBonus = Random.Range(0, _bonusPrefabs.Length);
-                } while (!_bonusScript.ContainsBonus(_bonusScript.GetBonusInEnumAt(indexBonus)));
+                indexBonus = Random.Range(0, _bonusPrefabs.Length);
+            } while (!_bonusScript.ContainsBonus(_bonusScript.GetBonusInEnumAt(indexBonus)));
 
-                Instantiate(_bonusPrefabs[indexBonus], transform.position, Quaternion.identity);
-            }
+            Instantiate(_bonusPrefabs[indexBonus], transform.position, Quaternion.identity);
         }
     }
 

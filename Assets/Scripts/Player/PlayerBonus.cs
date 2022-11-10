@@ -17,7 +17,6 @@ public class PlayerBonus : MonoBehaviour
     [SerializeField] PlayerAttack _attackScript;
     [SerializeField] PlayerMovement _movementScript;
     [SerializeField] private GameObject _shield;
-    [SerializeField] Score _scoreScript;
     List<BonusType> _bonuses;
     [SerializeField] int _pointsDoubleBonus = 1000;
     //YELLOW
@@ -54,10 +53,7 @@ public class PlayerBonus : MonoBehaviour
         } else
         {
             Debug.Log("rouge déjà fait");
-            if (_scoreScript != null)
-            {
-                _scoreScript.AddAmountToScore(_pointsDoubleBonus);
-            }
+            Score.Instance.AddAmountToScore(_pointsDoubleBonus);
         }
     }
 
@@ -72,10 +68,8 @@ public class PlayerBonus : MonoBehaviour
         else
         {
             Debug.Log("noir déjà fait");
-            if (_scoreScript != null)
-            {
-                _scoreScript.AddAmountToScore(_pointsDoubleBonus);
-            }
+            Score.Instance.AddAmountToScore(_pointsDoubleBonus);
+            
         }
     }
 
@@ -90,10 +84,7 @@ public class PlayerBonus : MonoBehaviour
         else
         {
             Debug.Log("bleu déjà fait");
-            if (_scoreScript != null)
-            {
-                _scoreScript.AddAmountToScore(_pointsDoubleBonus);
-            }
+            Score.Instance.AddAmountToScore(_pointsDoubleBonus);
         }
     }
 
@@ -109,10 +100,7 @@ public class PlayerBonus : MonoBehaviour
         else
         {
             Debug.Log("jaune déjà fait");
-            if (_scoreScript != null)
-            {
-                _scoreScript.AddAmountToScore(_pointsDoubleBonus);
-            }
+            Score.Instance.AddAmountToScore(_pointsDoubleBonus);
         }
     }
 
@@ -131,10 +119,7 @@ public class PlayerBonus : MonoBehaviour
         else
         {
             Debug.Log("vert déjà fait");
-            if (_scoreScript != null)
-            {
-                _scoreScript.AddAmountToScore(_pointsDoubleBonus);
-            }
+            Score.Instance.AddAmountToScore(_pointsDoubleBonus);
         }
     }
     public void ClearBonuses()

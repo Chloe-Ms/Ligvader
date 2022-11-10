@@ -189,7 +189,7 @@ MonoBehaviour:
   _waypoints: []
   loop: 1
   _moveSpeed: 2
-  _startOnLeft: 0
+  _startOnLeft: 1
 --- !u!1 &4304933967302539158
 GameObject:
   m_ObjectHideFlags: 0
