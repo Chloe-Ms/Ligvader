@@ -10,6 +10,8 @@ public class SceneChangement : MonoBehaviour
     [SerializeField] GameObject _optionDisplay;
     [SerializeField] GameObject pauseFirstButton, pauseSecondButton;
     [SerializeField] GameObject optionSlider, optionButton;
+    [SerializeField] PlayerAttack _playerAttack;
+    [SerializeField] PlayerMovement _playerMovement;
 
     PauseAction action;
 
@@ -62,11 +64,16 @@ public class SceneChangement : MonoBehaviour
             EventSystem.current.SetSelectedGameObject(null);
             //Set new selected object
             EventSystem.current.SetSelectedGameObject(pauseFirstButton);
+            _playerAttack.SetInMenu(true); 
+            _playerMovement.SetInMenu(true);
         } else
         {
+            _playerAttack.SetInMenu(false);
+            _playerMovement.SetInMenu(false);
             Time.timeScale = 1;
             DisplayOptions(false);
         }
+        _menuDisplayed = !_menuDisplayed;
     }
 
     public void DisplayOptions(bool isDisplayed)
@@ -83,6 +90,5 @@ public class SceneChangement : MonoBehaviour
     void OnPauseInput()
     {
         DisplayMenu(!_menuDisplayed);
-        _menuDisplayed = !_menuDisplayed;
     }
 }

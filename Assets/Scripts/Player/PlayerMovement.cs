@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private Renderer _renderer;
     private Vector2 _spawnPosition;
     private bool _canMoveVertically = false;
+    private bool _inMenu = false;
     void Reset(){
         _speed = 5f;
     }
@@ -30,7 +31,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        MovePlayer();
+        if (!_inMenu)
+        {
+            MovePlayer();
+        }
     }
 
     void MovePlayer(){
@@ -64,5 +68,10 @@ public class PlayerMovement : MonoBehaviour
     public void ChangeSpeed(float multiplier)
     {
         _currentSpeed = multiplier * _speed;
+    }
+
+    public void SetInMenu(bool isInMenu)
+    {
+        _inMenu = isInMenu;
     }
 }
