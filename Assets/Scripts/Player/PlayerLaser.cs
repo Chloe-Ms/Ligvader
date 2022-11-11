@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class PlayerLaser : MonoBehaviour
 {
-    [SerializeField] private float _damagesBySecond = 1f;
+    [SerializeField] private float _damagesPerSecond = 1f;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         EnemyHealth health = collision.gameObject.GetComponent<EnemyHealth>();
         if (health != null)
         {
-            health.TakeContinuousDamage(_damagesBySecond);
-            Debug.Log(health.CurrentHealth);
+            health.TakeContinuousDamage(_damagesPerSecond);
         }
     }
 
@@ -22,7 +21,6 @@ public class PlayerLaser : MonoBehaviour
         if (health != null)
         {
             health.StopContinuousDamage();
-            Debug.Log(health.CurrentHealth);
         }
     }
 }
