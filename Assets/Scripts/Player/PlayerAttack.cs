@@ -14,6 +14,7 @@ public class PlayerAttack : MonoBehaviour
     private Vector3 _projectileSize;
     private Vector3 _currentProjectileSize;
     private bool _isLaserActive = false;
+    private bool _inMenu = false;
     public bool IsLaserActive
     {
         set { _isLaserActive = value; }
@@ -40,7 +41,8 @@ public class PlayerAttack : MonoBehaviour
     }
 
     void OnFire(){
-        if (_canShoot && _spawnsTransform.Length > 0){
+        if (_canShoot && _spawnsTransform.Length > 0 && !_inMenu)
+        {
             _canShoot = false;
             StartCoroutine(Shoot());
         }
@@ -105,5 +107,8 @@ public class PlayerAttack : MonoBehaviour
     {
         _nbOutputProjectile = 1;
     }
-
+    public void SetInMenu(bool isInMenu)
+    {
+        _inMenu = isInMenu;
+    }
 }

@@ -304,6 +304,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _score: {fileID: 11400000, guid: e498f59b6f7dafb4782341fd38f7b9ce, type: 2}
+  _menuDisplay: {fileID: 0}
+  _optionDisplay: {fileID: 0}
+  pauseFirstButton: {fileID: 0}
+  pauseSecondButton: {fileID: 0}
+  optionSlider: {fileID: 0}
+  optionButton: {fileID: 0}
+  _playerAttack: {fileID: 0}
+  _playerMovement: {fileID: 0}
 --- !u!4 &262400949
 Transform:
   m_ObjectHideFlags: 0
