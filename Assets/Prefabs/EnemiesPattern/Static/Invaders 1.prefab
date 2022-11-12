@@ -53,9 +53,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _verticalMovement: 0
-  _speed: 3
+  _speed: 0.5
   _padding: 1
-  _rowDifference: 4
+  _rowDifference: 0.5
   _healthScript: {fileID: 0}
 --- !u!1001 &1816279511392135464
 PrefabInstance:
