@@ -21,6 +21,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] float _chanceToDropBonus;
     [SerializeField] GameObject[] _bonusPrefabs;
     PlayerBonus _bonusScript;
+    Score _scoreScript;
     bool _isInLaser = false;
     float _damageFromPlayer = 0f;
 
@@ -32,6 +33,7 @@ public class EnemyHealth : MonoBehaviour
     private void Start()
     {
         _bonusScript = GameObject.Find("Player").GetComponent<PlayerBonus>();
+        _scoreScript = GameObject.Find("ScoreManager").GetComponent<Score>();
     }
 
     void OnValidate()
@@ -50,52 +52,36 @@ public class EnemyHealth : MonoBehaviour
         if (_health <= 0f)
         {
 
-            Score.Instance.AddAmountToScore(_points);
+            _scoreScript.AddAmountToScore(_points);
             DropBonus();
 
             if (transform.parent != null && transform.parent.tag == "MobileEnemyPattern")
             {
                 Destroy(transform.parent.gameObject);
             }
-            
             //Cas avec le shield
             else if (transform.parent != null && transform.parent.transform.parent != null && transform.parent.transform.parent.tag == "StaticEnemyPattern"
-                && transform.parent.tag == "ShieldEnemy" && transform.parent.transform.parent.childCount == 1)
+                && transform.parent.tag == "ShieldEnemy")
             {
-                Debug.Log("AA");
-                Destroy(transform.parent.transform.parent.gameObject);
-                LoaderEnemies.Instance.LoadNewStaticEnemies();
+                if (transform.parent.transform.parent.childCount == 1)
+                {
+                    Debug.Log("AA");
+                    Destroy(transform.parent.transform.parent.gameObject);
+                    LoaderEnemies.Instance.LoadNewStaticEnemies();
+                } else
+                {
+                    Debug.Log("BB");
+                    Destroy(transform.parent.gameObject);
+                }
             }
-            //Suppression du dossier des Ennemis statiques
-            else if (transform.parent != null && transform.parent.transform.parent != null && transform.parent.transform.parent.tag == "StaticEnemyPattern"
-                && transform.parent.tag == "ShieldEnemy" && transform.parent.transform.parent.childCount != 1)
-            {
-                Debug.Log("BB");
-                Destroy(transform.parent.gameObject);
-            }
-            else if (transform.parent != null && transform.parent.transform.parent != null && transform.parent.transform.parent.tag == "StaticEnemyPattern"
-                && transform.parent.tag != "ShieldEnemy" && transform.parent.transform.parent.childCount == 1 && transform.parent.childCount == 1)
+            else if (transform.parent != null && transform.parent.tag == "StaticEnemyPattern" && transform.parent.childCount == 1)
             {
                 Debug.Log("CC");
-                Destroy(transform.parent.transform.parent.gameObject);
-                LoaderEnemies.Instance.LoadNewStaticEnemies();
-            }
-            //Suppression du dossier des Ennemis statiques
-            else if (transform.parent != null && transform.parent.transform.parent != null && transform.parent.transform.parent.tag == "StaticEnemyPattern"
-                && transform.parent.tag != "ShieldEnemy" && transform.parent.transform.parent.childCount != 1 && transform.parent.childCount == 1)
-            {
-                Debug.Log("DD");
-                Destroy(transform.parent.gameObject);
-            }
-            else if (transform.parent != null && transform.parent.tag == "StaticEnemyPattern" && transform.parent.childCount == 1 && transform.parent.tag != "ShieldEnemy")
-            {
-                Debug.Log("DD");
                 Destroy(transform.parent.gameObject);
                 LoaderEnemies.Instance.LoadNewStaticEnemies();
-            }
-            else
+            } else
             {
-                Debug.Log("EE");
+                Debug.Log("DD");
                 Destroy(gameObject);
             }
             
