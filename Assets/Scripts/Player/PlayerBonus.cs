@@ -58,6 +58,7 @@ public class PlayerBonus : MonoBehaviour
         }
     }
 
+    [Button]
     public void ApplyBlackBonus()
     {
         if (_bonuses.Contains(BonusType.BLACK))
