@@ -19,6 +19,13 @@ public class Score : MonoBehaviour
 
     public void AddAmountToScore(int amount)
     {
+        if (amount >= 0)
         _score.Value += amount;
+    }
+
+    public void RemoveAmountToScore(int amount)
+    {
+        if (amount >= 0)
+            _score.Value -= amount;
     }
 }
