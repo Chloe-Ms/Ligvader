@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -18,9 +19,7 @@ public class PlayerHealth : MonoBehaviour
                 _health--;
                 
             }
-            Debug.Log("BONUS "+_playerBonus.GetBonusesSize());
             _playerBonus.ClearBonuses();
-            Debug.Log(_health);
         } else
         {
             _health--;
@@ -30,10 +29,25 @@ public class PlayerHealth : MonoBehaviour
         if (_health <= 0)
         {
             Debug.Log("Player death");
+            SceneManager.LoadScene("EndScene");
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "EnemyProjectile")
+        {
+            TakeDamage();
+            Destroy(collision.gameObject);
+        }
+
+        if (collision.gameObject.tag == "Enemy")
+        {
+            TakeDamage();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "EnemyProjectile")
         {

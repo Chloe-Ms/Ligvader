@@ -54,10 +54,7 @@ public class PlayerBonus : MonoBehaviour
         } else
         {
             Debug.Log("rouge déjà fait");
-            if (_scoreScript != null)
-            {
-                _scoreScript.AddAmountToScore(_pointsDoubleBonus);
-            }
+            _scoreScript.AddAmountToScore(_pointsDoubleBonus);
         }
     }
 
@@ -72,10 +69,8 @@ public class PlayerBonus : MonoBehaviour
         else
         {
             Debug.Log("noir déjà fait");
-            if (_scoreScript != null)
-            {
-                _scoreScript.AddAmountToScore(_pointsDoubleBonus);
-            }
+            _scoreScript.AddAmountToScore(_pointsDoubleBonus);
+            
         }
     }
 
@@ -90,10 +85,7 @@ public class PlayerBonus : MonoBehaviour
         else
         {
             Debug.Log("bleu déjà fait");
-            if (_scoreScript != null)
-            {
-                _scoreScript.AddAmountToScore(_pointsDoubleBonus);
-            }
+            _scoreScript.AddAmountToScore(_pointsDoubleBonus);
         }
     }
 
@@ -109,10 +101,7 @@ public class PlayerBonus : MonoBehaviour
         else
         {
             Debug.Log("jaune déjà fait");
-            if (_scoreScript != null)
-            {
-                _scoreScript.AddAmountToScore(_pointsDoubleBonus);
-            }
+            _scoreScript.AddAmountToScore(_pointsDoubleBonus);
         }
     }
 
@@ -131,10 +120,7 @@ public class PlayerBonus : MonoBehaviour
         else
         {
             Debug.Log("vert déjà fait");
-            if (_scoreScript != null)
-            {
-                _scoreScript.AddAmountToScore(_pointsDoubleBonus);
-            }
+            _scoreScript.AddAmountToScore(_pointsDoubleBonus);
         }
     }
     public void ClearBonuses()

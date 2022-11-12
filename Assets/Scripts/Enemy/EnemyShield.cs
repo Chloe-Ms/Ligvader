@@ -13,6 +13,16 @@ public class EnemyShield : MonoBehaviour
             TakeDamage();
             Destroy(collision.gameObject);
         }
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "PlayerProjectile")
+        {
+            TakeDamage();
+            Destroy(collision.gameObject);
+        }
     }
 
     void TakeDamage()

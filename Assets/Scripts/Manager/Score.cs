@@ -1,19 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
 public class Score : MonoBehaviour
 {
+
     [SerializeField]
     FloatSO _score;
     
     [SerializeField] TextMeshProUGUI _scoreText;
-
-    private void Start()
-    {
-        _score.Value = 0;
-    }
 
     void Update()
     {
@@ -25,6 +19,13 @@ public class Score : MonoBehaviour
 
     public void AddAmountToScore(int amount)
     {
+        if (amount >= 0)
         _score.Value += amount;
+    }
+
+    public void RemoveAmountToScore(int amount)
+    {
+        if (amount >= 0)
+            _score.Value -= amount;
     }
 }

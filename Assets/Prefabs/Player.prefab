@@ -131,7 +131,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -416,7 +416,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeToReload: 0.4
-  _spawnsTransform: []
+  _spawnsTransform:
+  - {fileID: 7163193315646949464}
+  - {fileID: 3572113832305232094}
+  - {fileID: 3863707794439298679}
+  - {fileID: 0}
+  - {fileID: 0}
   _projectilePrefab: {fileID: 738048596899912352, guid: 82aef88fae8d84a4fb75a075c6a806ae, type: 3}
 --- !u!114 &1859850377648415628
 MonoBehaviour:
@@ -446,9 +451,9 @@ MonoBehaviour:
   _attackScript: {fileID: 2459279083596584575}
   _movementScript: {fileID: 3491882452592699279}
   _shield: {fileID: 1719583298081186727}
-  _scoreScript: {fileID: 0}
   _pointsDoubleBonus: 1000
   _laser: {fileID: 7319075905640134309}
+  _timeBeforeStartLaser: 0
 --- !u!50 &3432528394033043217
 Rigidbody2D:
   serializedVersion: 4
@@ -513,6 +518,7 @@ GameObject:
   - component: {fileID: 1431828548218209658}
   - component: {fileID: 4553925405903522134}
   - component: {fileID: 3902416232198408708}
+  - component: {fileID: 4208272158748223151}
   m_Layer: 0
   m_Name: Laser
   m_TagString: Untagged
@@ -634,6 +640,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &4208272158748223151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7319075905640134309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11043e40a2c17714896d660d76ed8db7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damagesPerSecond: 1
 --- !u!1 &7635486729519268497
 GameObject:
   m_ObjectHideFlags: 0
