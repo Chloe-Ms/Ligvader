@@ -18,9 +18,7 @@ public class PlayerHealth : MonoBehaviour
             //If the player has no power up
             if (_playerBonus.GetBonusesSize() == _playerBonus.GetSizeBonusEnum())
             {
-                
                 _health--;
-                
             }
             _playerBonus.ClearBonuses();
         } else
@@ -31,7 +29,6 @@ public class PlayerHealth : MonoBehaviour
         
         if (_health <= 0)
         {
-            //Debug.Log("Player death");
             _playerBonus.Die();
             StartCoroutine(StartEndScene());
         }
@@ -59,7 +56,6 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("MAIN "+ _playerBonus.ContainsBonus(BonusType.BLUE));
         if (collision.gameObject.tag == "EnemyProjectile")
         {
             TakeDamage();
