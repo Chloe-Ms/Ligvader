@@ -20,6 +20,11 @@ public class MusicManager : MonoBehaviour
     {
         audio = GetComponent<AudioSource>();
         TrackNumber += 1;
+        musicRandom();
+    }
+
+    void musicRandom()
+    {
         int nume = Random.Range(1, TrackNumber);
         Debug.Log("Track n°" + nume);
         num = nume;
