@@ -9,13 +9,16 @@ public class MusicManager : MonoBehaviour
     public AudioClip Track2;
     public AudioClip Track3; //<---drag  mp3#2 into the inspector here
     private AudioSource audio;
-    
+    [SerializeField] private int TrackNumber = 3;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
         audio = GetComponent<AudioSource>();
-        int nume = Random.Range(1, 4);
+        TrackNumber += 1;
+        int nume = Random.Range(1, TrackNumber);
         Debug.Log("Track n°" + nume); 
         num = nume;
         musicKicksin();
