@@ -5,11 +5,13 @@ using UnityEngine;
 public class MusicManager : MonoBehaviour
 {
     private int num;
+    [SerializeField] private int TrackNumber = 3;
     public AudioClip Track1; //<---drag mp3 into the inspector here
     public AudioClip Track2;
     public AudioClip Track3; //<---drag  mp3#2 into the inspector here
     private AudioSource audio;
-    [SerializeField] private int TrackNumber = 3;
+    [SerializeField] List<AudioClip> _SoundTracks;
+
 
 
 
@@ -18,8 +20,13 @@ public class MusicManager : MonoBehaviour
     {
         audio = GetComponent<AudioSource>();
         TrackNumber += 1;
+        musicRandom();
+    }
+
+    void musicRandom()
+    {
         int nume = Random.Range(1, TrackNumber);
-        Debug.Log("Track n°" + nume); 
+        Debug.Log("Track n°" + nume);
         num = nume;
         musicKicksin();
     }
@@ -43,13 +50,7 @@ public class MusicManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Nope");  
+            Debug.Log("Je trouve pas la track man");
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
