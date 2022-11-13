@@ -16,6 +16,7 @@ public class EnemyHealth : MonoBehaviour
     float _damageFromPlayer = 0f;
     private Renderer _renderer;
     private Vector2 _screenBounds;
+    [SerializeField] GameObject _explosionPrefab;
 
     public float CurrentHealth
     {
@@ -68,7 +69,6 @@ public class EnemyHealth : MonoBehaviour
             DropBonus();
             LoaderEnemies.Instance.CheckLoadEnemies(gameObject);
             DestroyEnemy();
-            
         }
     }
 
@@ -135,6 +135,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void DestroyEnemy()
     {
+
         if (transform.parent != null && transform.parent.tag == "MobileEnemyPattern")
         {
             Debug.Log("ZZ");
@@ -167,6 +168,8 @@ public class EnemyHealth : MonoBehaviour
             Debug.Log("DD");
             Destroy(gameObject);
         }
+        if (_explosionPrefab != null)
+            Instantiate(_explosionPrefab,transform.position,Quaternion.identity);
     }
 
     public void EnemyEscape()
