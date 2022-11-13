@@ -6,6 +6,7 @@ public class PlayerShield : MonoBehaviour
 {
     [SerializeField] PlayerBonus _plBonus;
 
+    [SerializeField] Animator _animator;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "EnemyProjectile")
@@ -35,4 +36,12 @@ public class PlayerShield : MonoBehaviour
             Destroy(collision.gameObject); //Enemy is destroyed when it collides with the shield
         }
     }
+
+    /*public void StartAnimation()
+    {
+        if (_animator != null)
+        {
+            _animator.SetTrigger("IsStarting");
+        }
+    }*/
 }

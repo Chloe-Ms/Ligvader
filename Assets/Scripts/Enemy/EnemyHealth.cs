@@ -9,12 +9,14 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] float _health;
     [SerializeField] float _chanceToDropBonus;
     [SerializeField] GameObject[] _bonusPrefabs;
+    FollowPath _followScript;
     PlayerBonus _bonusScript;
     Score _scoreScript;
     bool _isInLaser = false;
     float _damageFromPlayer = 0f;
     private Renderer _renderer;
     private Vector2 _screenBounds;
+    [SerializeField] GameObject _explosionPrefab;
 
     public float CurrentHealth
     {
@@ -37,6 +39,7 @@ public class EnemyHealth : MonoBehaviour
     private void Awake()
     {
         _renderer = GetComponent<Renderer>();
+        _followScript = GetComponent<FollowPath>();
     }
 
     private void Start()
@@ -64,14 +67,14 @@ public class EnemyHealth : MonoBehaviour
 
             _scoreScript.AddAmountToScore(_points);
             DropBonus();
-
+            LoaderEnemies.Instance.CheckLoadEnemies(gameObject);
             DestroyEnemy();
         }
     }
 
     void DropBonus()
     {
-        bool canDrop = Random.Range(0, 1) <= _chanceToDropBonus;
+        bool canDrop = Random.Range(0f, 1f) <= _chanceToDropBonus;
         if (canDrop && _bonusPrefabs.Length > 0 && _bonusScript.GetBonusesSize() > 0)
         {
             int indexBonus;
@@ -130,8 +133,9 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    void DestroyEnemy()
+    public void DestroyEnemy()
     {
+
         if (transform.parent != null && transform.parent.tag == "MobileEnemyPattern")
         {
             Debug.Log("ZZ");
@@ -164,6 +168,8 @@ public class EnemyHealth : MonoBehaviour
             Debug.Log("DD");
             Destroy(gameObject);
         }
+        if (_explosionPrefab != null)
+            Instantiate(_explosionPrefab,transform.position,Quaternion.identity);
     }
 
     public void EnemyEscape()

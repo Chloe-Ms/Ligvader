@@ -9,6 +9,8 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private Transform[] _spawnsTransform;
 
     [SerializeField] private Projectile _projectilePrefab;
+    [SerializeField] private Animator _animatorCanon,_animatorBig;
+    [SerializeField] private Projectile _bigProjectilePrefab;
     private int _nbOutputProjectile;
     private bool _isOutputInside = true;
     private Vector3 _projectileSize;
@@ -43,6 +45,14 @@ public class PlayerAttack : MonoBehaviour
     void OnFire(){
         if (_canShoot && _spawnsTransform.Length > 0 && !_inMenu)
         {
+            if ((_nbOutputProjectile == 3 && _isOutputInside) || _nbOutputProjectile == 5)
+            { //Red bonus, bigger size
+                _animatorCanon.SetTrigger("Attack");
+            }
+            if ((_nbOutputProjectile == 3 && !_isOutputInside) || _nbOutputProjectile == 5) //Blue bonus, same size
+            {
+                _animatorBig.SetTrigger("Attack");
+            }
             _canShoot = false;
             StartCoroutine(Shoot());
         }
@@ -57,10 +67,8 @@ public class PlayerAttack : MonoBehaviour
             }
             if ((_nbOutputProjectile == 3 && _isOutputInside) || _nbOutputProjectile == 5)
                 { //Red bonus, bigger size
-                    Projectile proj = Instantiate(_projectilePrefab, _spawnsTransform[1].position, Quaternion.identity);
-                    proj.gameObject.transform.localScale = _currentProjectileSize;
-                    proj = Instantiate(_projectilePrefab, _spawnsTransform[2].position, Quaternion.identity);
-                    proj.gameObject.transform.localScale = _currentProjectileSize;
+                    Instantiate(_bigProjectilePrefab, _spawnsTransform[1].position, Quaternion.identity);
+                    Instantiate(_bigProjectilePrefab, _spawnsTransform[2].position, Quaternion.identity);
                 }
 
                 if ((_nbOutputProjectile == 3 && !_isOutputInside) || _nbOutputProjectile == 5) //Blue bonus, same size

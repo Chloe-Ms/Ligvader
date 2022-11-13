@@ -16,10 +16,11 @@ public class PlayerBonus : MonoBehaviour
 {
     [SerializeField] PlayerAttack _attackScript;
     [SerializeField] PlayerMovement _movementScript;
-    [SerializeField] private GameObject _shield;
+    [SerializeField] private GameObject _shield,_moduleShield;
     [SerializeField] Score _scoreScript;
-    List<BonusType> _bonuses;
+    List<BonusType> _bonuses;//The bonuses the player doesn"t have
     [SerializeField] int _pointsDoubleBonus = 1000;
+    [SerializeField] Animator _animatorLaser;
     //YELLOW
     private float _durationY;
     private float _currentDurationY;
@@ -28,11 +29,13 @@ public class PlayerBonus : MonoBehaviour
     private float _durationG;
     private float _currentDurationG;
     private bool _isActiveG = false;
-    [SerializeField] GameObject _laser;
+    [SerializeField] GameObject _laser, _moduleLaser;
+    [SerializeField] GameObject _moduleCanon,_moduleGros;
     private float _durationLeftActivation;
     private bool _isStartingLaser = false;
     [SerializeField] private float _timeBeforeStartLaser;
-
+    [SerializeField] private EdgeCollider2D _blueCollider;
+    [SerializeField] private PolygonCollider2D _normalCollider;
 
     void Start()
     {
@@ -47,10 +50,11 @@ public class PlayerBonus : MonoBehaviour
     {
         if (_bonuses.Contains(BonusType.RED))
         {
+            _moduleCanon.SetActive(true);
             _bonuses.Remove(BonusType.RED);
             _attackScript.MultiplyProjectileSize(sizeMultiplier);
             _attackScript.AddRedBonus();
-            _attackScript.GetComponent<SpriteRenderer>().color = Color.red;
+            //_attackScript.GetComponent<SpriteRenderer>().color = Color.red;
         } else
         {
             Debug.Log("rouge déjà fait");
@@ -64,7 +68,7 @@ public class PlayerBonus : MonoBehaviour
         {
             _bonuses.Remove(BonusType.BLACK);
             _movementScript.SetCanMoveVertically(true);
-            _attackScript.GetComponent<SpriteRenderer>().color = Color.black;
+            //_attackScript.GetComponent<SpriteRenderer>().color = Color.black;
         }
         else
         {
@@ -80,7 +84,10 @@ public class PlayerBonus : MonoBehaviour
         {
             _bonuses.Remove(BonusType.BLUE);
             _attackScript.AddBlueBonus();
-            _attackScript.GetComponent<SpriteRenderer>().color = Color.blue;
+            _moduleGros.SetActive(true);
+            _normalCollider.enabled = false;
+            _blueCollider.enabled = true;
+            //_attackScript.GetComponent<SpriteRenderer>().color = Color.blue;
         }
         else
         {
@@ -96,7 +103,7 @@ public class PlayerBonus : MonoBehaviour
             _bonuses.Remove(BonusType.YELLOW);
             _durationY = duration;
             StartTimerBonusY();
-            _attackScript.GetComponent<SpriteRenderer>().color = Color.yellow;
+            //_attackScript.GetComponent<SpriteRenderer>().color = Color.yellow;
         }
         else
         {
@@ -115,7 +122,7 @@ public class PlayerBonus : MonoBehaviour
 
             StartTimerBonusG();
             _movementScript.ChangeSpeed(multiplier);
-            _attackScript.GetComponent<SpriteRenderer>().color = Color.green;
+            //_attackScript.GetComponent<SpriteRenderer>().color = Color.green;
         }
         else
         {
@@ -131,12 +138,16 @@ public class PlayerBonus : MonoBehaviour
         }
         //RED && BLUE
         _attackScript.ResetOutputProjectile();
+        _moduleCanon.SetActive(false);
+        _moduleGros.SetActive(false);
         //BLACK
         _movementScript.ResetMovementVertically();
         //YELLOW
         EndTimerBonusY();
         //GREEN
         EndTimerBonusG();
+        _normalCollider.enabled = true;
+        _blueCollider.enabled = false;
         //AUGMENTER LA VITESSE
         _movementScript.ChangeSpeed(1f);
     }
@@ -145,6 +156,13 @@ public class PlayerBonus : MonoBehaviour
     {
         _currentDurationY = 0f;
         _isActiveY = true;
+        StartCoroutine(ActivateShield());
+    }
+
+    IEnumerator ActivateShield()
+    {
+        _moduleShield.SetActive(true);
+        yield return new WaitForSeconds(1f);
         _shield.SetActive(true);
     }
 
@@ -153,12 +171,14 @@ public class PlayerBonus : MonoBehaviour
         _attackScript.IsLaserActive = true; //Player can't shoot when the laser is loading
         _isStartingLaser = true; //Start timer for loading the laser
         _durationLeftActivation = 0f; //Reset timer
+        _moduleLaser.SetActive(true);
     }
     public void EndTimerBonusY()
     {
         _isActiveY = false;
         _shield.SetActive(false);
-         AddBonus(BonusType.YELLOW);
+        _moduleShield.SetActive(false);
+        AddBonus(BonusType.YELLOW);
         
     }
 
@@ -167,6 +187,7 @@ public class PlayerBonus : MonoBehaviour
         _isStartingLaser = false; //Laser is not starting
         _isActiveG = false; //Laser is not attacking
         _laser.SetActive(false); //Laser is not visible
+        _moduleLaser.SetActive(false);
         _attackScript.IsLaserActive = false; //Not attacking anymore
         _currentDurationG = 0f;
         AddBonus(BonusType.GREEN);
@@ -235,6 +256,7 @@ public class PlayerBonus : MonoBehaviour
         }
         if (_isActiveG)
         {
+            _animatorLaser.SetTrigger("LaserAttack");
             _currentDurationG += Time.deltaTime;
             if (_currentDurationG > _durationG)
             {
