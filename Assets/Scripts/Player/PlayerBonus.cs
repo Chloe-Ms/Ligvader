@@ -18,7 +18,7 @@ public class PlayerBonus : MonoBehaviour
     [SerializeField] PlayerMovement _movementScript;
     [SerializeField] private GameObject _shield,_moduleShield;
     [SerializeField] Score _scoreScript;
-    List<BonusType> _bonuses;
+    List<BonusType> _bonuses;//The bonuses the player doesn"t have
     [SerializeField] int _pointsDoubleBonus = 1000;
     [SerializeField] Animator _animatorLaser;
     //YELLOW
@@ -30,7 +30,7 @@ public class PlayerBonus : MonoBehaviour
     private float _currentDurationG;
     private bool _isActiveG = false;
     [SerializeField] GameObject _laser, _moduleLaser;
-    [SerializeField] GameObject _moduleCanon;
+    [SerializeField] GameObject _moduleCanon,_moduleGros;
     private float _durationLeftActivation;
     private bool _isStartingLaser = false;
     [SerializeField] private float _timeBeforeStartLaser;
@@ -83,6 +83,7 @@ public class PlayerBonus : MonoBehaviour
         {
             _bonuses.Remove(BonusType.BLUE);
             _attackScript.AddBlueBonus();
+            _moduleGros.SetActive(true);
             //_attackScript.GetComponent<SpriteRenderer>().color = Color.blue;
         }
         else
@@ -135,6 +136,7 @@ public class PlayerBonus : MonoBehaviour
         //RED && BLUE
         _attackScript.ResetOutputProjectile();
         _moduleCanon.SetActive(false);
+        _moduleGros.SetActive(false);
         //BLACK
         _movementScript.ResetMovementVertically();
         //YELLOW
