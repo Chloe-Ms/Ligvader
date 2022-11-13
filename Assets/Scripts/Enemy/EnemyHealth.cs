@@ -17,6 +17,7 @@ public class EnemyHealth : MonoBehaviour
     private Renderer _renderer;
     private Vector2 _screenBounds;
     [SerializeField] GameObject _explosionPrefab;
+    [SerializeField] GameObject _impactPrefab;
 
     public float CurrentHealth
     {
@@ -92,6 +93,10 @@ public class EnemyHealth : MonoBehaviour
     {
         if (collision.gameObject.tag == "PlayerProjectile")
         {
+            if (_health > 1f)
+            {
+                Instantiate(_impactPrefab, collision.transform.position, Quaternion.identity);
+            }
             TakeDamage();
             Destroy(collision.gameObject);
         }
@@ -102,6 +107,10 @@ public class EnemyHealth : MonoBehaviour
 
         if (collision.gameObject.tag == "PlayerProjectile")
         {
+            if (_health > 1f)
+            {
+                Instantiate(_impactPrefab, collision.transform.position, Quaternion.identity);
+            }
             TakeDamage();
             Destroy(collision.gameObject);
         }
@@ -138,7 +147,7 @@ public class EnemyHealth : MonoBehaviour
 
         if (transform.parent != null && transform.parent.tag == "MobileEnemyPattern")
         {
-            Debug.Log("ZZ");
+            //Debug.Log("ZZ");
             Destroy(transform.parent.gameObject);
         }
         //Cas avec le shield
@@ -147,25 +156,25 @@ public class EnemyHealth : MonoBehaviour
         {
             if (transform.parent.transform.parent.childCount == 1)
             {
-                Debug.Log("AA");
+                //Debug.Log("AA");
                 Destroy(transform.parent.transform.parent.gameObject);
                 LoaderEnemies.Instance.LoadNewStaticEnemies();
             }
             else
             {
-                Debug.Log("BB");
+                //Debug.Log("BB");
                 Destroy(transform.parent.gameObject);
             }
         }
         else if (transform.parent != null && transform.parent.tag == "StaticEnemyPattern" && transform.parent.childCount == 1)
         {
-            Debug.Log("CC");
+            //Debug.Log("CC");
             Destroy(transform.parent.gameObject);
             LoaderEnemies.Instance.LoadNewStaticEnemies();
         }
         else
         {
-            Debug.Log("DD");
+            //Debug.Log("DD");
             Destroy(gameObject);
         }
         if (_explosionPrefab != null)
