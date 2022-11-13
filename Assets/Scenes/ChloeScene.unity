@@ -2711,20 +2711,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 915553639500286237, guid: 6c4d49fba8e60704db6b1791cd34aeec, type: 3}
-      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[12].x
-      value: 0.014798564
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.92
       objectReference: {fileID: 0}
     - target: {fileID: 915553639500286237, guid: 6c4d49fba8e60704db6b1791cd34aeec, type: 3}
-      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[12].y
-      value: 0.350307
-      objectReference: {fileID: 0}
-    - target: {fileID: 915553639500286237, guid: 6c4d49fba8e60704db6b1791cd34aeec, type: 3}
-      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[13].x
-      value: -0.01666461
-      objectReference: {fileID: 0}
-    - target: {fileID: 915553639500286237, guid: 6c4d49fba8e60704db6b1791cd34aeec, type: 3}
-      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[13].y
-      value: 0.35048237
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.92
       objectReference: {fileID: 0}
     - target: {fileID: 1911743380931169407, guid: 6c4d49fba8e60704db6b1791cd34aeec, type: 3}
       propertyPath: m_RootOrder
