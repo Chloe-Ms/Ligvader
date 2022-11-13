@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeToReload: 4
-  _chanceToShoot: 0.5
+  _chanceToShoot: 0.457
   _projectilePrefab: {fileID: 9124190974468509512, guid: 6999f46269ac93f488ac2a956840b89a, type: 3}
   _spawnPosition: {fileID: 4705559490277675537}
 --- !u!114 &-620776796611517386
@@ -144,8 +144,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _points: 100
-  _health: 1
-  _chanceToDropBonus: 1
+  _health: 2
+  _chanceToDropBonus: 0.1
   _bonusPrefabs:
   - {fileID: 8845017225537953109, guid: e96abc7dc146dc24daab318531209a9d, type: 3}
   - {fileID: 8845017225537953109, guid: 8927c46f78f03804fa3ac623833f3969, type: 3}

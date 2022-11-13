@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 50
+  controlID: 44115
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -86,7 +86,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 1
+    m_EnableMouseInput: 0
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 51
+  controlID: 44116
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 17
+  controlID: 44117
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -224,9 +224,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: e0660000
-      m_LastClickedID: 26336
-      m_ExpandedIDs: 56f5ffff
+      m_SelectedIDs: 90670000
+      m_LastClickedID: 0
+      m_ExpandedIDs: 9ab5feff9cb5feff26b6feffccb6feff3ab7feffccb8feff82d3fefff0d3feffded4feffe0d4feffc8e7feffcae7feff38e8feffa00cffffa20cffff100dffff840dfffff40dffffe010ffff2212ffff3c24ffffd42bffffb82effff56f5ffffbc6600000a67000020670000366700004267000086670000a6a20000c0a20000d2a2000088a80000d6a80000deab0000f4ab00005aaf000060b9000076b90000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -523,9 +523,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0.98625326, y: -1.7714955, z: -9.934611}
+    m_Target: {x: -0.7323375, y: 0.00013814121, z: -9.990072}
     speed: 2
-    m_Value: {x: 0.9352283, y: -1.9013773, z: -9.932936}
+    m_Value: {x: -0.7323375, y: 0.00013814121, z: -9.990072}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -576,9 +576,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 3.8909595
+    m_Target: 4.6009674
     speed: 2
-    m_Value: 3.7234063
+    m_Value: 4.6009674
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -627,7 +627,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 52
+  controlID: 44094
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -696,21 +696,21 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs
+    - Assets/Prefabs/EnemiesPattern/Static
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs
+  - Assets/Prefabs/EnemiesPattern/Static
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\ekode\Documents\GitHub\Ligvader
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: 4a6e0000
-    m_LastClickedID: 28234
+    scrollPos: {x: 0, y: 89.400024}
+    m_SelectedIDs: 826e0000
+    m_LastClickedID: 28290
     m_ExpandedIDs: 00000000306e00004a6e0000846e000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -739,7 +739,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000306e0000
+    m_ExpandedIDs: 00000000306e000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -764,8 +764,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: e0660000
-    m_LastClickedInstanceID: 26336
+    m_SelectedInstanceIDs: 90670000
+    m_LastClickedInstanceID: 26512
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
