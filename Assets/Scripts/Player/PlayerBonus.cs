@@ -34,7 +34,8 @@ public class PlayerBonus : MonoBehaviour
     private float _durationLeftActivation;
     private bool _isStartingLaser = false;
     [SerializeField] private float _timeBeforeStartLaser;
-
+    [SerializeField] private EdgeCollider2D _blueCollider;
+    [SerializeField] private PolygonCollider2D _normalCollider;
 
     void Start()
     {
@@ -84,6 +85,8 @@ public class PlayerBonus : MonoBehaviour
             _bonuses.Remove(BonusType.BLUE);
             _attackScript.AddBlueBonus();
             _moduleGros.SetActive(true);
+            _normalCollider.enabled = false;
+            _blueCollider.enabled = true;
             //_attackScript.GetComponent<SpriteRenderer>().color = Color.blue;
         }
         else
@@ -143,6 +146,8 @@ public class PlayerBonus : MonoBehaviour
         EndTimerBonusY();
         //GREEN
         EndTimerBonusG();
+        _normalCollider.enabled = true;
+        _blueCollider.enabled = false;
         //AUGMENTER LA VITESSE
         _movementScript.ChangeSpeed(1f);
     }
