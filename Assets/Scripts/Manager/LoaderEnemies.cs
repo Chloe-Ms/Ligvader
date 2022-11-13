@@ -3,18 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class TimelinePrefab
+/*public class TimelinePrefab
 {
     public GameObject _objectLoad;
     public float loadTime;
     [HideInInspector]
     public bool deleted;
-}
+}*/
 
 public class LoaderEnemies : MonoBehaviour
 {
     private static LoaderEnemies instance;
-    [SerializeField] List<TimelinePrefab> _mobileEnemies;
+    [SerializeField] List<GameObject> _mobileEnemies;
+    [SerializeField] float _secBeforeRespawnMobile = 10;
+    [SerializeField] float _secBeforeFirstSpawnMobile = 1;
+    [SerializeField] List<GameObject> _ufoEnemies;
+    [SerializeField] float _secBeforeRespawnUFO = 40;
+    [SerializeField] float _secBeforeFirstSpawnUFO = 2;
     [SerializeField] List<GameObject> _staticEnemies;
 
     public static LoaderEnemies Instance {
@@ -30,17 +35,61 @@ public class LoaderEnemies : MonoBehaviour
         instance = this;
         LoadNewStaticEnemies();
     }
+
+    public void Start()
+    {
+        StartCoroutine(SpawnMobileEnemy(_secBeforeFirstSpawnMobile));
+        StartCoroutine(SpawnUFOEnemy(_secBeforeFirstSpawnUFO));
+    }
     void Update()
     {
-        for (int i = 0; i < _mobileEnemies.Count; i++)
+        /*for (int i = 0; i < _mobileEnemies.Count; i++)
         {
             if (_mobileEnemies[i].loadTime <= Time.timeSinceLevelLoad && !_mobileEnemies[i].deleted)
             {
                 Instantiate(_mobileEnemies[i]._objectLoad);
                 _mobileEnemies[i].deleted = true;
             }
-        }
+        }*/
+    }
 
+    public void CheckLoadEnemies(GameObject go)
+    {
+        FollowPath followScript = go.GetComponent<FollowPath>();
+        if (followScript != null)
+        {
+            if (followScript.Loop)
+            {
+                //Mobile
+                StartCoroutine(SpawnMobileEnemy(_secBeforeRespawnMobile));
+            } else
+            {
+                //UFO
+                StartCoroutine(SpawnUFOEnemy(_secBeforeRespawnUFO));
+            }
+        }
+    }
+
+    private IEnumerator SpawnMobileEnemy(float secToWait)
+    {
+        yield return new WaitForSeconds(secToWait);
+        if (_mobileEnemies.Count != 0)
+        {
+            int index = Random.Range(0, _mobileEnemies.Count);
+
+            Instantiate(_mobileEnemies[index]);
+        }
+    }
+
+    private IEnumerator SpawnUFOEnemy(float secToWait)
+    {
+        yield return new WaitForSeconds(secToWait);
+        if (_ufoEnemies.Count != 0)
+        {
+            int index = Random.Range(0, _ufoEnemies.Count);
+
+            Instantiate(_ufoEnemies[index]);
+        }
     }
 
     public void LoadNewStaticEnemies()

@@ -50,7 +50,7 @@ public class PlayerBonus : MonoBehaviour
             _bonuses.Remove(BonusType.RED);
             _attackScript.MultiplyProjectileSize(sizeMultiplier);
             _attackScript.AddRedBonus();
-            _attackScript.GetComponent<SpriteRenderer>().color = Color.red;
+            //_attackScript.GetComponent<SpriteRenderer>().color = Color.red;
         } else
         {
             Debug.Log("rouge déjà fait");
@@ -64,7 +64,7 @@ public class PlayerBonus : MonoBehaviour
         {
             _bonuses.Remove(BonusType.BLACK);
             _movementScript.SetCanMoveVertically(true);
-            _attackScript.GetComponent<SpriteRenderer>().color = Color.black;
+            //_attackScript.GetComponent<SpriteRenderer>().color = Color.black;
         }
         else
         {
@@ -80,7 +80,7 @@ public class PlayerBonus : MonoBehaviour
         {
             _bonuses.Remove(BonusType.BLUE);
             _attackScript.AddBlueBonus();
-            _attackScript.GetComponent<SpriteRenderer>().color = Color.blue;
+            //_attackScript.GetComponent<SpriteRenderer>().color = Color.blue;
         }
         else
         {
@@ -96,7 +96,7 @@ public class PlayerBonus : MonoBehaviour
             _bonuses.Remove(BonusType.YELLOW);
             _durationY = duration;
             StartTimerBonusY();
-            _attackScript.GetComponent<SpriteRenderer>().color = Color.yellow;
+            //_attackScript.GetComponent<SpriteRenderer>().color = Color.yellow;
         }
         else
         {
@@ -115,7 +115,7 @@ public class PlayerBonus : MonoBehaviour
 
             StartTimerBonusG();
             _movementScript.ChangeSpeed(multiplier);
-            _attackScript.GetComponent<SpriteRenderer>().color = Color.green;
+            //_attackScript.GetComponent<SpriteRenderer>().color = Color.green;
         }
         else
         {

@@ -2184,15 +2184,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mobileEnemies:
-  - _objectLoad: {fileID: 4586233586064774468, guid: 3a9961a7464a56141a12a74aed760b38, type: 3}
-    loadTime: 0
-    deleted: 0
-  - _objectLoad: {fileID: 7100923809002885398, guid: 364f07eb001effd428b3b485fe752c76, type: 3}
-    loadTime: 15
-    deleted: 0
-  - _objectLoad: {fileID: 6284817528374437356, guid: 74cf31b159c41584e9d4f1b222ba0829, type: 3}
-    loadTime: 30
-    deleted: 0
+  - {fileID: 4586233586064774468, guid: 3a9961a7464a56141a12a74aed760b38, type: 3}
+  _secBeforeRespawnMobile: 10
+  _secBeforeFirstSpawnMobile: 5
+  _ufoEnemies:
+  - {fileID: 7100923809002885398, guid: 364f07eb001effd428b3b485fe752c76, type: 3}
+  - {fileID: 6284817528374437356, guid: 74cf31b159c41584e9d4f1b222ba0829, type: 3}
+  _secBeforeRespawnUFO: 40
+  _secBeforeFirstSpawnUFO: 1
   _staticEnemies:
   - {fileID: 9143308801336734515, guid: d296d458409c86e448a446d729742823, type: 3}
   - {fileID: 4633216329277558384, guid: 733965e69788bc540ba7910c662d6ae2, type: 3}
@@ -2710,6 +2709,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 915553639500286237, guid: 6c4d49fba8e60704db6b1791cd34aeec, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.92
+      objectReference: {fileID: 0}
+    - target: {fileID: 915553639500286237, guid: 6c4d49fba8e60704db6b1791cd34aeec, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.92
+      objectReference: {fileID: 0}
     - target: {fileID: 1911743380931169407, guid: 6c4d49fba8e60704db6b1791cd34aeec, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -2731,8 +2738,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2637012773384253498, guid: 6c4d49fba8e60704db6b1791cd34aeec, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2637012773384253498, guid: 6c4d49fba8e60704db6b1791cd34aeec, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.7193
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 2637012773384253498, guid: 6c4d49fba8e60704db6b1791cd34aeec, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2782,6 +2793,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 3533188268839788883, guid: 6c4d49fba8e60704db6b1791cd34aeec, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3572113832305232094, guid: 6c4d49fba8e60704db6b1791cd34aeec, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1
@@ -2805,6 +2820,10 @@ PrefabInstance:
     - target: {fileID: 5926159975892793830, guid: 6c4d49fba8e60704db6b1791cd34aeec, type: 3}
       propertyPath: _timeBeforeStartLaser
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7085039336723051169, guid: 6c4d49fba8e60704db6b1791cd34aeec, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7635486729519268497, guid: 6c4d49fba8e60704db6b1791cd34aeec, type: 3}
       propertyPath: m_Layer
