@@ -671,6 +671,7 @@ MonoBehaviour:
   - {fileID: 9143308801336734515, guid: d296d458409c86e448a446d729742823, type: 3}
   - {fileID: 4633216329277558384, guid: 733965e69788bc540ba7910c662d6ae2, type: 3}
   - {fileID: 1961628488734660991, guid: a5e64eefce01328479fcd2cfa5ffdf6c, type: 3}
+  - {fileID: 4633216329277558384, guid: fb58daef04e7a32459d2ec8ccd516e06, type: 3}
 --- !u!4 &269067417
 Transform:
   m_ObjectHideFlags: 0
@@ -1458,6 +1459,7 @@ MonoBehaviour:
   Track1: {fileID: 8300000, guid: f44d8634e138b6846a2549df83e2a695, type: 3}
   Track2: {fileID: 8300000, guid: 75dfbf672c864c64793128564531e325, type: 3}
   Track3: {fileID: 8300000, guid: 247cda3dbc87a4c4580cdf346ad227d7, type: 3}
+  TrackNumber: 3
 --- !u!1 &733909222
 GameObject:
   m_ObjectHideFlags: 0
