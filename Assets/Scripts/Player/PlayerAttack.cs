@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,7 @@ public class PlayerAttack : MonoBehaviour
     private Vector3 _currentProjectileSize;
     private bool _isLaserActive = false;
     private bool _inMenu = false;
+    private bool _isDead = false;
     public bool IsLaserActive
     {
         set { _isLaserActive = value; }
@@ -43,7 +45,7 @@ public class PlayerAttack : MonoBehaviour
     }
 
     void OnFire(){
-        if (_canShoot && _spawnsTransform.Length > 0 && !_inMenu)
+        if (_canShoot && _spawnsTransform.Length > 0 && !_inMenu && !_isDead)
         {
             if ((_nbOutputProjectile == 3 && _isOutputInside) || _nbOutputProjectile == 5)
             { //Red bonus, bigger size
@@ -118,5 +120,10 @@ public class PlayerAttack : MonoBehaviour
     public void SetInMenu(bool isInMenu)
     {
         _inMenu = isInMenu;
+    }
+
+    public void Die()
+    {
+        _isDead = true;
     }
 }
