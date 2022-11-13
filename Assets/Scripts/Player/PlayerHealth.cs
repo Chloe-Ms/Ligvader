@@ -49,6 +49,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("MAIN "+ _playerBonus.ContainsBonus(BonusType.BLUE));
         if (collision.gameObject.tag == "EnemyProjectile")
         {
             TakeDamage();
