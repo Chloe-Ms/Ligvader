@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _direction: {x: 0, y: 1, z: 0}
-  _speed: 3
+  _speed: 5.4
 --- !u!70 &-2996882370749396110
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
