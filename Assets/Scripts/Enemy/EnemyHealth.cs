@@ -64,8 +64,9 @@ public class EnemyHealth : MonoBehaviour
 
             _scoreScript.AddAmountToScore(_points);
             DropBonus();
-
+            LoaderEnemies.Instance.CheckLoadEnemies(gameObject);
             DestroyEnemy();
+            
         }
     }
 

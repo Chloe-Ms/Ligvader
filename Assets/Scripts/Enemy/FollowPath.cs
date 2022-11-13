@@ -22,6 +22,12 @@ public class FollowPath : MonoBehaviour
     // Index of current waypoint from which Enemy walks to the next one
     private int _waypointIndex = 0;
 
+    public bool Loop
+    {
+        set { loop = value; }
+        get { return loop; }
+    }
+
     // Use this for initialization
     private void Start()
     {
