@@ -4048,18 +4048,6 @@ PrefabInstance:
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[28].y
       value: 0.031992353
       objectReference: {fileID: 0}
-    - target: {fileID: 7336735577294782003, guid: 6c4d49fba8e60704db6b1791cd34aeec, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7336735577294782003, guid: 6c4d49fba8e60704db6b1791cd34aeec, type: 3}
-      propertyPath: m_Points.Array.data[14].x
-      value: 0.010254547
-      objectReference: {fileID: 0}
-    - target: {fileID: 7336735577294782003, guid: 6c4d49fba8e60704db6b1791cd34aeec, type: 3}
-      propertyPath: m_Points.Array.data[14].y
-      value: 0.35196158
-      objectReference: {fileID: 0}
     - target: {fileID: 7635486729519268497, guid: 6c4d49fba8e60704db6b1791cd34aeec, type: 3}
       propertyPath: m_Layer
       value: 6
