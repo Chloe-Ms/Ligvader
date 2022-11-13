@@ -397,6 +397,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   _projectilePrefab: {fileID: 738048596899912352, guid: 82aef88fae8d84a4fb75a075c6a806ae, type: 3}
+  _bigProjectilePrefab: {fileID: 738048596899912352, guid: feb0f9c5de51a5b498e00a9f7ed5b86e, type: 3}
 --- !u!114 &1859850377648415628
 MonoBehaviour:
   m_ObjectHideFlags: 0
