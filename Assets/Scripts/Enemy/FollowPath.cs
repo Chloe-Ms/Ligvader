@@ -73,6 +73,7 @@ public class FollowPath : MonoBehaviour
                     {
                         if (_health != null)
                         {
+                            LoaderEnemies.Instance.CheckLoadEnemies(gameObject);
                             _health.DestroyEnemy();
                         }
                     }
@@ -93,6 +94,7 @@ public class FollowPath : MonoBehaviour
                     {
                         if (_health != null)
                         {
+                            LoaderEnemies.Instance.CheckLoadEnemies(gameObject);
                             _health.DestroyEnemy();
                         }
                     }
