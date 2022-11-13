@@ -74,7 +74,7 @@ public class EnemyHealth : MonoBehaviour
 
     void DropBonus()
     {
-        bool canDrop = Random.Range(0, 1) <= _chanceToDropBonus;
+        bool canDrop = Random.Range(0f, 1f) <= _chanceToDropBonus;
         if (canDrop && _bonusPrefabs.Length > 0 && _bonusScript.GetBonusesSize() > 0)
         {
             int indexBonus;

@@ -398,7 +398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ad8712ce355b934399537142324b2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
+  _speed: 4
 --- !u!114 &2459279083596584575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -411,7 +411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8c849d7cb4db6d48a40d8b7baca3d65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeToReload: 0.4
+  _timeToReload: 0.6
   _spawnsTransform:
   - {fileID: 7163193315646949464}
   - {fileID: 3572113832305232094}
@@ -451,7 +451,7 @@ MonoBehaviour:
   _scoreScript: {fileID: 0}
   _pointsDoubleBonus: 1000
   _laser: {fileID: 7319075905640134309}
-  _timeBeforeStartLaser: 0
+  _timeBeforeStartLaser: 1.2
 --- !u!50 &3432528394033043217
 Rigidbody2D:
   serializedVersion: 4
