@@ -103,7 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _timeToReload: 4
   _chanceToShoot: 0.5
-  _projectilePrefab: {fileID: 9124190974468509512, guid: 6999f46269ac93f488ac2a956840b89a, type: 3}
+  _projectilePrefab: {fileID: 9124190974468509512, guid: f8fbe8ac2076e2147b4381845e38a2b3, type: 3}
   _spawnPosition: {fileID: 4705559490277675537}
 --- !u!114 &-620776796611517386
 MonoBehaviour:
