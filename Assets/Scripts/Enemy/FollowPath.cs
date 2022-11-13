@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FollowPath : MonoBehaviour
 {
-
+    EnemyHealth _health;
     // Array of waypoints to walk from one to the next one
     [SerializeField]
     private Transform[] _waypoints;
@@ -31,6 +31,7 @@ public class FollowPath : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
+        _health = GetComponent<EnemyHealth>();
         // Set position of Enemy as position of the first waypoint
         if (_waypoints.Length > 0)
         {
@@ -68,6 +69,12 @@ public class FollowPath : MonoBehaviour
                     if (loop)
                     {
                         _leftToRight = !_leftToRight;
+                    } else
+                    {
+                        if (_health != null)
+                        {
+                            _health.DestroyEnemy();
+                        }
                     }
                     
                 } else
@@ -81,6 +88,13 @@ public class FollowPath : MonoBehaviour
                     if (loop)
                     {
                         _leftToRight = !_leftToRight;
+                    }
+                    else
+                    {
+                        if (_health != null)
+                        {
+                            _health.DestroyEnemy();
+                        }
                     }
                 } else
                 {

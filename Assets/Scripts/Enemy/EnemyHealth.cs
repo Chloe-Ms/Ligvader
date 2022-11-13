@@ -9,6 +9,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] float _health;
     [SerializeField] float _chanceToDropBonus;
     [SerializeField] GameObject[] _bonusPrefabs;
+    FollowPath _followScript;
     PlayerBonus _bonusScript;
     Score _scoreScript;
     bool _isInLaser = false;
@@ -37,6 +38,7 @@ public class EnemyHealth : MonoBehaviour
     private void Awake()
     {
         _renderer = GetComponent<Renderer>();
+        _followScript = GetComponent<FollowPath>();
     }
 
     private void Start()
@@ -131,7 +133,7 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    void DestroyEnemy()
+    public void DestroyEnemy()
     {
         if (transform.parent != null && transform.parent.tag == "MobileEnemyPattern")
         {
