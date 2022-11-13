@@ -15,10 +15,12 @@ public class LoaderEnemies : MonoBehaviour
 {
     private static LoaderEnemies instance;
     [SerializeField] List<GameObject> _mobileEnemies;
-    [SerializeField] List<GameObject> _ufoEnemies;
-    [SerializeField] List<GameObject> _staticEnemies;
     [SerializeField] float _secBeforeRespawnMobile = 10;
+    [SerializeField] float _secBeforeFirstSpawnMobile = 1;
+    [SerializeField] List<GameObject> _ufoEnemies;
     [SerializeField] float _secBeforeRespawnUFO = 40;
+    [SerializeField] float _secBeforeFirstSpawnUFO = 2;
+    [SerializeField] List<GameObject> _staticEnemies;
 
     public static LoaderEnemies Instance {
         get { return instance; }
@@ -32,6 +34,12 @@ public class LoaderEnemies : MonoBehaviour
 
         instance = this;
         LoadNewStaticEnemies();
+    }
+
+    public void Start()
+    {
+        StartCoroutine(SpawnMobileEnemy(_secBeforeFirstSpawnMobile));
+        StartCoroutine(SpawnUFOEnemy(_secBeforeFirstSpawnUFO));
     }
     void Update()
     {
@@ -53,18 +61,18 @@ public class LoaderEnemies : MonoBehaviour
             if (followScript.Loop)
             {
                 //Mobile
-                StartCoroutine(SpawnMobileEnemy());
+                StartCoroutine(SpawnMobileEnemy(_secBeforeRespawnMobile));
             } else
             {
                 //UFO
-                StartCoroutine(SpawnUFOEnemy());
+                StartCoroutine(SpawnUFOEnemy(_secBeforeRespawnUFO));
             }
         }
     }
 
-    private IEnumerator SpawnMobileEnemy()
+    private IEnumerator SpawnMobileEnemy(float secToWait)
     {
-        yield return new WaitForSeconds(_secBeforeRespawnMobile);
+        yield return new WaitForSeconds(secToWait);
         if (_mobileEnemies.Count != 0)
         {
             int index = Random.Range(0, _mobileEnemies.Count);
@@ -73,9 +81,9 @@ public class LoaderEnemies : MonoBehaviour
         }
     }
 
-    private IEnumerator SpawnUFOEnemy()
+    private IEnumerator SpawnUFOEnemy(float secToWait)
     {
-        yield return new WaitForSeconds(_secBeforeRespawnUFO);
+        yield return new WaitForSeconds(secToWait);
         if (_ufoEnemies.Count != 0)
         {
             int index = Random.Range(0, _ufoEnemies.Count);
