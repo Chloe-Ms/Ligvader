@@ -9,7 +9,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private Transform[] _spawnsTransform;
 
     [SerializeField] private Projectile _projectilePrefab;
-    [SerializeField] private Animator _animatorCanon;
+    [SerializeField] private Animator _animatorCanon,_animatorBig;
     [SerializeField] private Projectile _bigProjectilePrefab;
     private int _nbOutputProjectile;
     private bool _isOutputInside = true;
@@ -48,6 +48,10 @@ public class PlayerAttack : MonoBehaviour
             if ((_nbOutputProjectile == 3 && _isOutputInside) || _nbOutputProjectile == 5)
             { //Red bonus, bigger size
                 _animatorCanon.SetTrigger("Attack");
+            }
+            if ((_nbOutputProjectile == 3 && !_isOutputInside) || _nbOutputProjectile == 5) //Blue bonus, same size
+            {
+                _animatorBig.SetTrigger("Attack");
             }
             _canShoot = false;
             StartCoroutine(Shoot());
