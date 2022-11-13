@@ -30,6 +30,7 @@ public class PlayerBonus : MonoBehaviour
     private float _currentDurationG;
     private bool _isActiveG = false;
     [SerializeField] GameObject _laser, _moduleLaser;
+    [SerializeField] GameObject _moduleCanon;
     private float _durationLeftActivation;
     private bool _isStartingLaser = false;
     [SerializeField] private float _timeBeforeStartLaser;
@@ -48,6 +49,7 @@ public class PlayerBonus : MonoBehaviour
     {
         if (_bonuses.Contains(BonusType.RED))
         {
+            _moduleCanon.SetActive(true);
             _bonuses.Remove(BonusType.RED);
             _attackScript.MultiplyProjectileSize(sizeMultiplier);
             _attackScript.AddRedBonus();
@@ -132,6 +134,7 @@ public class PlayerBonus : MonoBehaviour
         }
         //RED && BLUE
         _attackScript.ResetOutputProjectile();
+        _moduleCanon.SetActive(false);
         //BLACK
         _movementScript.ResetMovementVertically();
         //YELLOW
