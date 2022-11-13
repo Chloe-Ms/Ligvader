@@ -119,7 +119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _points: 750
   _health: 10
-  _chanceToDropBonus: 0.33
+  _chanceToDropBonus: 0.5
   _bonusPrefabs:
   - {fileID: 8845017225537953109, guid: e96abc7dc146dc24daab318531209a9d, type: 3}
   - {fileID: 8845017225537953109, guid: 8927c46f78f03804fa3ac623833f3969, type: 3}
