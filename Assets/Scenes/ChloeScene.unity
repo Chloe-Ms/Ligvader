@@ -1112,6 +1112,7 @@ MonoBehaviour:
   optionButton: {fileID: 128515380}
   _playerAttack: {fileID: 2637012774013844313}
   _playerMovement: {fileID: 2637012774013844312}
+  _audioSource: {fileID: 519420033}
 --- !u!1 &1277857757
 GameObject:
   m_ObjectHideFlags: 0
@@ -2091,7 +2092,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f645a462e2a5c364b835d50a3a728eb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _slider: {fileID: 1779469797}
   _audioMixer: {fileID: 24100000, guid: eee2b911e3e1c60469bd9ded25a3ec46, type: 2}
+  _volume: {fileID: 11400000, guid: 0868c2552d77e314d9a947c51cd626b1, type: 2}
 --- !u!1 &1789174628
 GameObject:
   m_ObjectHideFlags: 0
