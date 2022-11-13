@@ -12,7 +12,7 @@ public class SceneChangement : MonoBehaviour
     [SerializeField] GameObject optionSlider, optionButton;
     [SerializeField] PlayerAttack _playerAttack;
     [SerializeField] PlayerMovement _playerMovement;
-
+    [SerializeField] AudioSource _audioSource;
     PauseAction action;
 
     bool _menuDisplayed = false;
@@ -55,10 +55,13 @@ public class SceneChangement : MonoBehaviour
 
     public void DisplayMenu(bool isDisplayed)
     {
-        
         _menuDisplay.SetActive(isDisplayed);
         if (isDisplayed)
         {
+            if(_audioSource != null)
+            {
+                _audioSource.Pause();
+            }
             Time.timeScale = 0;
             //Clear selected object
             EventSystem.current.SetSelectedGameObject(null);
@@ -68,6 +71,10 @@ public class SceneChangement : MonoBehaviour
             _playerMovement.SetInMenu(true);
         } else
         {
+            if (_audioSource != null)
+            {
+                _audioSource.Play();
+            }
             _playerAttack.SetInMenu(false);
             _playerMovement.SetInMenu(false);
             Time.timeScale = 1;
