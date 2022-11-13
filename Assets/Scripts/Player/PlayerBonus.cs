@@ -16,10 +16,11 @@ public class PlayerBonus : MonoBehaviour
 {
     [SerializeField] PlayerAttack _attackScript;
     [SerializeField] PlayerMovement _movementScript;
-    [SerializeField] private GameObject _shield;
+    [SerializeField] private GameObject _shield,_moduleShield;
     [SerializeField] Score _scoreScript;
     List<BonusType> _bonuses;
     [SerializeField] int _pointsDoubleBonus = 1000;
+    [SerializeField] Animator _animatorLaser;
     //YELLOW
     private float _durationY;
     private float _currentDurationY;
@@ -28,7 +29,7 @@ public class PlayerBonus : MonoBehaviour
     private float _durationG;
     private float _currentDurationG;
     private bool _isActiveG = false;
-    [SerializeField] GameObject _laser;
+    [SerializeField] GameObject _laser, _moduleLaser;
     private float _durationLeftActivation;
     private bool _isStartingLaser = false;
     [SerializeField] private float _timeBeforeStartLaser;
@@ -145,6 +146,13 @@ public class PlayerBonus : MonoBehaviour
     {
         _currentDurationY = 0f;
         _isActiveY = true;
+        StartCoroutine(ActivateShield());
+    }
+
+    IEnumerator ActivateShield()
+    {
+        _moduleShield.SetActive(true);
+        yield return new WaitForSeconds(1f);
         _shield.SetActive(true);
     }
 
@@ -153,12 +161,14 @@ public class PlayerBonus : MonoBehaviour
         _attackScript.IsLaserActive = true; //Player can't shoot when the laser is loading
         _isStartingLaser = true; //Start timer for loading the laser
         _durationLeftActivation = 0f; //Reset timer
+        _moduleLaser.SetActive(true);
     }
     public void EndTimerBonusY()
     {
         _isActiveY = false;
         _shield.SetActive(false);
-         AddBonus(BonusType.YELLOW);
+        _moduleShield.SetActive(false);
+        AddBonus(BonusType.YELLOW);
         
     }
 
@@ -167,6 +177,7 @@ public class PlayerBonus : MonoBehaviour
         _isStartingLaser = false; //Laser is not starting
         _isActiveG = false; //Laser is not attacking
         _laser.SetActive(false); //Laser is not visible
+        _moduleLaser.SetActive(false);
         _attackScript.IsLaserActive = false; //Not attacking anymore
         _currentDurationG = 0f;
         AddBonus(BonusType.GREEN);
@@ -235,6 +246,7 @@ public class PlayerBonus : MonoBehaviour
         }
         if (_isActiveG)
         {
+            _animatorLaser.SetTrigger("LaserAttack");
             _currentDurationG += Time.deltaTime;
             if (_currentDurationG > _durationG)
             {
