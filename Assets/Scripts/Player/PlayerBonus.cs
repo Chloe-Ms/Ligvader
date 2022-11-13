@@ -289,4 +289,10 @@ public class PlayerBonus : MonoBehaviour
             }
         }
     }
+
+    public void Die()
+    {
+        _attackScript.Die();
+        _movementScript.Die();
+    }
 }

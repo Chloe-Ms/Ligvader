@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 _spawnPosition;
     private bool _canMoveVertically = false;
     private bool _inMenu = false;
+
+    private bool _isDead = false;
     void Reset(){
         _speed = 5f;
     }
@@ -34,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (!_inMenu)
+        if (!_inMenu && !_isDead)
         {
             MovePlayer();
         }
@@ -81,5 +84,10 @@ public class PlayerMovement : MonoBehaviour
     public void SetInMenu(bool isInMenu)
     {
         _inMenu = isInMenu;
+    }
+
+    public void Die()
+    {
+        _isDead = true;
     }
 }

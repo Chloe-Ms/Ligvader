@@ -127,6 +127,7 @@ MonoBehaviour:
   - {fileID: 8845017225537953109, guid: 4fe1718d00e4000408bed13b13a63473, type: 3}
   - {fileID: 8845017225537953109, guid: 98092d616aba9c547bccda90a5fee87f, type: 3}
   _explosionPrefab: {fileID: 7401508628624639251, guid: 3bdd38fcac7a45a4489f50e9c79f57ff, type: 3}
+  _impactPrefab: {fileID: 7242693052117736479, guid: 4bc31af0935be734fa703f9d43041e44, type: 3}
 --- !u!50 &5557272818445872667
 Rigidbody2D:
   serializedVersion: 4
