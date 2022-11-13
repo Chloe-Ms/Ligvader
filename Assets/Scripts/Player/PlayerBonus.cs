@@ -4,6 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+[Serializable]
+public class ColliderPoints
+{
+    public Vector2[] _points;
+}
 public enum BonusType
 {
     BLUE,
@@ -30,13 +35,13 @@ public class PlayerBonus : MonoBehaviour
     private float _currentDurationG;
     private bool _isActiveG = false;
     [SerializeField] GameObject _laser, _moduleLaser;
-    [SerializeField] GameObject _moduleCanon,_moduleGros;
+    [SerializeField] GameObject _moduleCanon,_moduleGros,_moduleMeca;
     private float _durationLeftActivation;
     private bool _isStartingLaser = false;
     [SerializeField] private float _timeBeforeStartLaser;
-    [SerializeField] private EdgeCollider2D _blueCollider;
+    [SerializeField] private EdgeCollider2D _edgeCollider;
     [SerializeField] private PolygonCollider2D _normalCollider;
-
+    [SerializeField] private ColliderPoints[] _colliders;
     void Start()
     {
         _bonuses = new List<BonusType>();
@@ -68,6 +73,17 @@ public class PlayerBonus : MonoBehaviour
         {
             _bonuses.Remove(BonusType.BLACK);
             _movementScript.SetCanMoveVertically(true);
+            _normalCollider.enabled = false;
+            _edgeCollider.enabled = true;
+            _moduleMeca.SetActive(true);
+            if (_bonuses.Contains(BonusType.BLUE)) //On a pas le bonus noir
+            {
+                _edgeCollider.points = _colliders[2]._points;
+            }
+            else
+            {
+                _edgeCollider.points = _colliders[0]._points;
+            }
             //_attackScript.GetComponent<SpriteRenderer>().color = Color.black;
         }
         else
@@ -86,7 +102,15 @@ public class PlayerBonus : MonoBehaviour
             _attackScript.AddBlueBonus();
             _moduleGros.SetActive(true);
             _normalCollider.enabled = false;
-            _blueCollider.enabled = true;
+            _edgeCollider.enabled = true;
+            if (_bonuses.Contains(BonusType.BLACK)) //On a pas le bonus noir
+            {
+                _edgeCollider.points = _colliders[1]._points;
+            } else
+            {
+                _edgeCollider.points = _colliders[0]._points;
+            }
+
             //_attackScript.GetComponent<SpriteRenderer>().color = Color.blue;
         }
         else
@@ -141,13 +165,14 @@ public class PlayerBonus : MonoBehaviour
         _moduleCanon.SetActive(false);
         _moduleGros.SetActive(false);
         //BLACK
+        _moduleMeca.SetActive(false);
         _movementScript.ResetMovementVertically();
         //YELLOW
         EndTimerBonusY();
         //GREEN
         EndTimerBonusG();
         _normalCollider.enabled = true;
-        _blueCollider.enabled = false;
+        _edgeCollider.enabled = false;
         //AUGMENTER LA VITESSE
         _movementScript.ChangeSpeed(1f);
     }
