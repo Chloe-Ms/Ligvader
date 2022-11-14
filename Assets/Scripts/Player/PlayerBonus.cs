@@ -127,12 +127,15 @@ public class PlayerBonus : MonoBehaviour
             _bonuses.Remove(BonusType.YELLOW);
             _durationY = duration;
             StartTimerBonusY();
-            //_attackScript.GetComponent<SpriteRenderer>().color = Color.yellow;
         }
         else
         {
-            Debug.Log("jaune déjà fait");
-            _scoreScript.AddAmountToScore(_pointsDoubleBonus);
+            if (_isActiveY)
+            {
+                _currentDurationY = 0f;
+            }
+            //Debug.Log("jaune déjà fait");
+            //_scoreScript.AddAmountToScore(_pointsDoubleBonus);
         }
     }
 
@@ -146,12 +149,18 @@ public class PlayerBonus : MonoBehaviour
 
             StartTimerBonusG();
             _movementScript.ChangeSpeed(multiplier);
-            //_attackScript.GetComponent<SpriteRenderer>().color = Color.green;
         }
         else
         {
-            Debug.Log("vert déjà fait");
-            _scoreScript.AddAmountToScore(_pointsDoubleBonus);
+            
+            if (_isActiveG)
+            {
+                _currentDurationG = 0f;
+            } else
+            {
+                _scoreScript.AddAmountToScore(_pointsDoubleBonus);
+            }
+            
         }
     }
     public void ClearBonuses()
@@ -256,6 +265,7 @@ public class PlayerBonus : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log("Y " + _currentDurationY + " G " + _currentDurationG);
         if (_isActiveY)
         {
             if (_currentDurationY < _durationY)
@@ -281,7 +291,7 @@ public class PlayerBonus : MonoBehaviour
         }
         if (_isActiveG)
         {
-            _animatorLaser.SetTrigger("LaserAttack");
+            
             _currentDurationG += Time.deltaTime;
             if (_currentDurationG > _durationG)
             {
