@@ -17,8 +17,8 @@ public class PlayerAttack : MonoBehaviour
     private Vector3 _projectileSize;
     private Vector3 _currentProjectileSize;
     private bool _isLaserActive = false;
-    private bool _inMenu = false;
-    private bool _isDead = false;
+    private bool _inMenu;
+    private bool _isDead;
     public bool IsLaserActive
     {
         set { _isLaserActive = value; }
@@ -26,18 +26,15 @@ public class PlayerAttack : MonoBehaviour
 
     private void Start()
     {
+        _nbOutputProjectile = 1;
+        _isDead = false;
+        _inMenu = false;
         if (_projectilePrefab != null)
         {
             _projectileSize = _projectilePrefab.transform.localScale; //Get the normal size to resize projectiles when the bonus is lost
             _currentProjectileSize = _projectilePrefab.transform.localScale;
         }
         
-    }
-
-    void OnValidate() {
-        if (_nbOutputProjectile < 1){
-            _nbOutputProjectile = 1;
-        }
     }
 
     void Reset() {
