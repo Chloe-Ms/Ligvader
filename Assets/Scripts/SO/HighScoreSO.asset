@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d35c4132fc5a97d46af220fe201eda0f, type: 3}
-  m_Name: VolumeSO
+  m_Name: HighScoreSO
   m_EditorClassIdentifier: 
-  _value: 1
+  _value: 0

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneChangement : MonoBehaviour
 {
     [SerializeField] FloatSO _score;
+    [SerializeField] FloatSO _highScore;
     [SerializeField] GameObject _menuDisplay;
     [SerializeField] GameObject _optionDisplay;
     [SerializeField] GameObject pauseFirstButton, pauseSecondButton;
@@ -14,6 +15,7 @@ public class SceneChangement : MonoBehaviour
     [SerializeField] PlayerMovement _playerMovement;
     [SerializeField] AudioSource _audioSource;
     PauseAction action;
+    [SerializeField] GameObject _newHSText;
 
     bool _menuDisplayed = false;
 
@@ -36,6 +38,15 @@ public class SceneChangement : MonoBehaviour
     {
         //Link function to input
         action.Pause.PauseMenu.performed += _ => OnPauseInput();
+        //New highscore
+        if (_score != null && _highScore != null && _score.Value > _highScore.Value)
+        {
+            _highScore.Value = _score.Value;
+            if (_newHSText != null)
+            {
+                _newHSText.SetActive(true);
+            }
+        }
     }
     public void ChangeScene(string sceneToLoad)
     {
