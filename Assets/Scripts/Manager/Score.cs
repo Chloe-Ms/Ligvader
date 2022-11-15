@@ -4,16 +4,21 @@ using TMPro;
 public class Score : MonoBehaviour
 {
 
-    [SerializeField]
-    FloatSO _score;
-    
+    [SerializeField] FloatSO _score;
+    [SerializeField] FloatSO _highscore;
+
     [SerializeField] TextMeshProUGUI _scoreText;
+    [SerializeField] TextMeshProUGUI _highscoreText;
 
     void Update()
     {
         if (_scoreText != null)
         {
             _scoreText.text = _score.Value+ "";
+        }
+        if (_highscoreText != null)
+        {
+            _highscoreText.text = _highscore.Value + "";
         }
     }
 
