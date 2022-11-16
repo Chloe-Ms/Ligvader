@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerLaser : MonoBehaviour
@@ -13,6 +11,12 @@ public class PlayerLaser : MonoBehaviour
         {
             health.TakeContinuousDamage(_damagesPerSecond);
         }
+
+        FeedbackLaser feedback = collision.gameObject.GetComponent<FeedbackLaser>();
+        if (feedback != null)
+        {
+            //feedback.StartFeedback()
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -21,6 +25,7 @@ public class PlayerLaser : MonoBehaviour
         if (health != null)
         {
             health.StopContinuousDamage();
+
         }
     }
 }

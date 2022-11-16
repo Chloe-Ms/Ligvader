@@ -60,20 +60,22 @@ public class FollowPath : MonoBehaviour
         // and Enemy starts to walk to the next waypoint
         if (transform.position == _waypoints[_waypointIndex].transform.position)
         {
-            // If the enemy reaches the last waypoint, he comes back to the first one 
+            // 
             
             if (_leftToRight)
             {
                 if (_waypointIndex + 1 == _waypoints.Length)
                 {
-                    if (loop)
+                    //When the enemy loop, it changes direction when it reaches the last point
+                    if (loop) 
                     {
                         _leftToRight = !_leftToRight;
                     } else
                     {
                         if (_health != null)
                         {
-                            LoaderEnemies.Instance.CheckLoadEnemies(gameObject);
+                            //When the enemy go in only one durection, it explodes when it has finished its journey
+                            LoaderEnemies.Instance.CheckLoadMobileEnemies(gameObject);
                             _health.DestroyEnemy();
                         }
                     }
@@ -94,7 +96,7 @@ public class FollowPath : MonoBehaviour
                     {
                         if (_health != null)
                         {
-                            LoaderEnemies.Instance.CheckLoadEnemies(gameObject);
+                            LoaderEnemies.Instance.CheckLoadMobileEnemies(gameObject);
                             _health.DestroyEnemy();
                         }
                     }

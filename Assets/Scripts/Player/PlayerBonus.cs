@@ -265,7 +265,7 @@ public class PlayerBonus : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("Y " + _currentDurationY + " G " + _currentDurationG);
+        //Debug.Log("Y " + _currentDurationY + " G " + _currentDurationG);
         if (_isActiveY)
         {
             if (_currentDurationY < _durationY)
