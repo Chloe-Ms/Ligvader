@@ -197,7 +197,10 @@ public class PlayerBonus : MonoBehaviour
     {
         _moduleShield.SetActive(true);
         yield return new WaitForSeconds(1f);
-        _shield.SetActive(true);
+        if (_isActiveY)
+        {
+            _shield.SetActive(true);
+        }
     }
 
     public void StartTimerBonusG()
@@ -265,7 +268,6 @@ public class PlayerBonus : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log("Y " + _currentDurationY + " G " + _currentDurationG);
         if (_isActiveY)
         {
             if (_currentDurationY < _durationY)
