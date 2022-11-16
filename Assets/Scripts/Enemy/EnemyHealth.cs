@@ -145,6 +145,7 @@ public class EnemyHealth : MonoBehaviour
         if (_isInLaser)
         {
             _currentHealth -= _damageFromPlayer * Time.deltaTime;
+            CheckMidLife();
             CheckDeath();
         }
 
