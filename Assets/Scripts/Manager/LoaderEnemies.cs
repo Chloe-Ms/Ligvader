@@ -2,15 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-/*public class TimelinePrefab
-{
-    public GameObject _objectLoad;
-    public float loadTime;
-    [HideInInspector]
-    public bool deleted;
-}*/
-
 public class LoaderEnemies : MonoBehaviour
 {
     private static LoaderEnemies instance;
@@ -33,7 +24,7 @@ public class LoaderEnemies : MonoBehaviour
             Destroy(gameObject);  
 
         instance = this;
-        //LoadNewStaticEnemies();
+        LoadNewStaticEnemies();
     }
 
     public void Start()

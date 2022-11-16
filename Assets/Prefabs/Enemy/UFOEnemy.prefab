@@ -131,7 +131,7 @@ MonoBehaviour:
   _explosionPrefab: {fileID: 7401508628624639251, guid: 3bdd38fcac7a45a4489f50e9c79f57ff, type: 3}
   _impactPrefab: {fileID: 7242693052117736479, guid: 4bc31af0935be734fa703f9d43041e44, type: 3}
   _spriteMidLife: {fileID: 0}
-  _renderer: {fileID: 1100007556942780456}
+  _renderer: {fileID: 0}
 --- !u!114 &-4987246202172779311
 MonoBehaviour:
   m_ObjectHideFlags: 0
