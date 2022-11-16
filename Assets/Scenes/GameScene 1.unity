@@ -1948,7 +1948,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2459279083596584575, guid: 6c4d49fba8e60704db6b1791cd34aeec, type: 3}
       propertyPath: _timeToReload
-      value: 0.6
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 2459279083596584575, guid: 6c4d49fba8e60704db6b1791cd34aeec, type: 3}
       propertyPath: _spawnsTransform.Array.data[3]
@@ -2032,7 +2032,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3491882452592699279, guid: 6c4d49fba8e60704db6b1791cd34aeec, type: 3}
       propertyPath: _speed
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3572113832305232094, guid: 6c4d49fba8e60704db6b1791cd34aeec, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2076,11 +2076,15 @@ PrefabInstance:
       objectReference: {fileID: 2008476061}
     - target: {fileID: 5926159975892793830, guid: 6c4d49fba8e60704db6b1791cd34aeec, type: 3}
       propertyPath: _timeBeforeStartLaser
-      value: 1.2
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 7163193315646949464, guid: 6c4d49fba8e60704db6b1791cd34aeec, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.354
+      objectReference: {fileID: 0}
+    - target: {fileID: 7336735577294782003, guid: 6c4d49fba8e60704db6b1791cd34aeec, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7635486729519268497, guid: 6c4d49fba8e60704db6b1791cd34aeec, type: 3}
       propertyPath: m_Layer

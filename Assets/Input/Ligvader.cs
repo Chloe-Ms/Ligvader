@@ -38,12 +38,12 @@ public partial class @Ligvader : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Fire"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""3523eb3e-b0ef-40ba-851f-ea108c1ace3f"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": ""Touch"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
