@@ -2,15 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-/*public class TimelinePrefab
-{
-    public GameObject _objectLoad;
-    public float loadTime;
-    [HideInInspector]
-    public bool deleted;
-}*/
-
 public class LoaderEnemies : MonoBehaviour
 {
     private static LoaderEnemies instance;
@@ -41,22 +32,11 @@ public class LoaderEnemies : MonoBehaviour
         StartCoroutine(SpawnMobileEnemy(_secBeforeFirstSpawnMobile));
         StartCoroutine(SpawnUFOEnemy(_secBeforeFirstSpawnUFO));
     }
-    void Update()
-    {
-        /*for (int i = 0; i < _mobileEnemies.Count; i++)
-        {
-            if (_mobileEnemies[i].loadTime <= Time.timeSinceLevelLoad && !_mobileEnemies[i].deleted)
-            {
-                Instantiate(_mobileEnemies[i]._objectLoad);
-                _mobileEnemies[i].deleted = true;
-            }
-        }*/
-    }
 
-    public void CheckLoadEnemies(GameObject go)
+    public void CheckLoadMobileEnemies(GameObject go)
     {
         FollowPath followScript = go.GetComponent<FollowPath>();
-        if (followScript != null)
+        if (followScript != null) //If the enemy move, it has the follow enemy script
         {
             if (followScript.Loop)
             {
@@ -72,7 +52,9 @@ public class LoaderEnemies : MonoBehaviour
 
     private IEnumerator SpawnMobileEnemy(float secToWait)
     {
+        //Debug.Log("Before spawn Mobile");
         yield return new WaitForSeconds(secToWait);
+        //Debug.Log("After spawn Mobile");
         if (_mobileEnemies.Count != 0)
         {
             int index = Random.Range(0, _mobileEnemies.Count);
@@ -83,7 +65,9 @@ public class LoaderEnemies : MonoBehaviour
 
     private IEnumerator SpawnUFOEnemy(float secToWait)
     {
+        //Debug.Log("Before spawn UFO");
         yield return new WaitForSeconds(secToWait);
+        //Debug.Log("After spawn UFO");
         if (_ufoEnemies.Count != 0)
         {
             int index = Random.Range(0, _ufoEnemies.Count);

@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _score: {fileID: 11400000, guid: e498f59b6f7dafb4782341fd38f7b9ce, type: 2}
+  _highScore: {fileID: 0}
   _menuDisplay: {fileID: 0}
   _optionDisplay: {fileID: 0}
   pauseFirstButton: {fileID: 0}
@@ -162,6 +163,7 @@ MonoBehaviour:
   _playerAttack: {fileID: 0}
   _playerMovement: {fileID: 0}
   _audioSource: {fileID: 0}
+  _newHSText: {fileID: 0}
 --- !u!4 &33199322
 Transform:
   m_ObjectHideFlags: 0
@@ -819,7 +821,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: V1.3
+  m_text: 'V1.4
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d11a616a051c4334aab90c67a60bc111, type: 2}
   m_sharedMaterial: {fileID: -545077526820984103, guid: d11a616a051c4334aab90c67a60bc111, type: 2}

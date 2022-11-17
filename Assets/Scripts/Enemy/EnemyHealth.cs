@@ -7,6 +7,7 @@ public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] int _points;
     [SerializeField] float _health;
+    float _currentHealth;
     [SerializeField] float _chanceToDropBonus;
     [SerializeField] GameObject[] _bonusPrefabs;
     FollowPath _followScript;
@@ -14,20 +15,23 @@ public class EnemyHealth : MonoBehaviour
     Score _scoreScript;
     bool _isInLaser = false;
     float _damageFromPlayer = 0f;
-    private Renderer _renderer;
+    //private Renderer _renderer;
     private Vector2 _screenBounds;
     [SerializeField] GameObject _explosionPrefab;
     [SerializeField] GameObject _impactPrefab;
+    [SerializeField] Sprite _spriteMidLife;
+    bool _isMidLife = false;
+    [SerializeField] SpriteRenderer _renderer;
 
     public float CurrentHealth
     {
-        get { return _health; }
+        get { return _currentHealth; }
         set
         {
-            _health = value;
-            if (_health < 0)
+            _currentHealth = value;
+            if (_currentHealth < 0)
             {
-                _health = 0;
+                _currentHealth = 0;
             }
         }
     }
@@ -39,12 +43,13 @@ public class EnemyHealth : MonoBehaviour
 
     private void Awake()
     {
-        _renderer = GetComponent<Renderer>();
+        //_renderer = GetComponent<Renderer>();
         _followScript = GetComponent<FollowPath>();
     }
 
     private void Start()
     {
+        _currentHealth = _health;
         _bonusScript = GameObject.Find("Player").GetComponent<PlayerBonus>();
         _scoreScript = GameObject.Find("ScoreManager").GetComponent<Score>();
         _screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
@@ -57,18 +62,26 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage()
     {
-        _health--;
+        _currentHealth--;
+        CheckMidLife();
         CheckDeath();
     }
 
+    private void CheckMidLife()
+    {
+        if (_renderer != null && _spriteMidLife != null && _currentHealth < (_health / 2f) && !_isMidLife)
+        {
+            _renderer.sprite = _spriteMidLife;
+            _isMidLife = true;
+        }
+    }
     private void CheckDeath()
     {
-        if (_health <= 0f)
+        if (_currentHealth <= 0f)
         {
-
             _scoreScript.AddAmountToScore(_points);
             DropBonus();
-            LoaderEnemies.Instance.CheckLoadEnemies(gameObject);
+            LoaderEnemies.Instance.CheckLoadMobileEnemies(gameObject);
             DestroyEnemy();
         }
     }
@@ -93,7 +106,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if (collision.gameObject.tag == "PlayerProjectile")
         {
-            if (_health > 1f)
+            if (_currentHealth > 1f)
             {
                 Instantiate(_impactPrefab, collision.transform.position, Quaternion.identity);
             }
@@ -107,7 +120,7 @@ public class EnemyHealth : MonoBehaviour
 
         if (collision.gameObject.tag == "PlayerProjectile")
         {
-            if (_health > 1f)
+            if (_currentHealth > 1f)
             {
                 Instantiate(_impactPrefab, collision.transform.position, Quaternion.identity);
             }
@@ -131,12 +144,13 @@ public class EnemyHealth : MonoBehaviour
     {
         if (_isInLaser)
         {
-            _health -= _damageFromPlayer * Time.deltaTime;
+            _currentHealth -= _damageFromPlayer * Time.deltaTime;
+            CheckMidLife();
             CheckDeath();
         }
 
         //Outside game screen (lower than the screen)
-        if (transform.position.y + (_renderer.bounds.size.y / 2f) < -_screenBounds.y)
+        if (_renderer != null && transform.position.y + (_renderer.bounds.size.y / 2f) < -_screenBounds.y)
         {
             EnemyEscape();
         }
@@ -147,7 +161,6 @@ public class EnemyHealth : MonoBehaviour
 
         if (transform.parent != null && transform.parent.tag == "MobileEnemyPattern")
         {
-            //Debug.Log("ZZ");
             Destroy(transform.parent.gameObject);
         }
         //Cas avec le shield
