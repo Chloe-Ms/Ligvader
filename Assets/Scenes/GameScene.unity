@@ -366,7 +366,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -495,11 +495,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mobileEnemies:
   - {fileID: 4586233586064774468, guid: 3a9961a7464a56141a12a74aed760b38, type: 3}
+  - {fileID: 4586233586064774468, guid: aa7e57163887561498bfb028ff7029d4, type: 3}
+  - {fileID: 4586233586064774468, guid: d5137080474b88e4da0ae266916f5dca, type: 3}
   _secBeforeRespawnMobile: 10
   _secBeforeFirstSpawnMobile: 1
   _ufoEnemies:
   - {fileID: 7100923809002885398, guid: 364f07eb001effd428b3b485fe752c76, type: 3}
-  - {fileID: 6284817528374437356, guid: 74cf31b159c41584e9d4f1b222ba0829, type: 3}
+  - {fileID: 7100923809002885398, guid: b9a698c8f8a01da439f02f15d67e8d83, type: 3}
   _secBeforeRespawnUFO: 40
   _secBeforeFirstSpawnUFO: 2
   _staticEnemies:
@@ -558,8 +560,8 @@ RectTransform:
   m_Father: {fileID: 611074754}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2823,7 +2825,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2074507820
 RectTransform:
   m_ObjectHideFlags: 0
