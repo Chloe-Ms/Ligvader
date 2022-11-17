@@ -52,9 +52,9 @@ public class LoaderEnemies : MonoBehaviour
 
     private IEnumerator SpawnMobileEnemy(float secToWait)
     {
-        Debug.Log("Before spawn Mobile");
+        //Debug.Log("Before spawn Mobile");
         yield return new WaitForSeconds(secToWait);
-        Debug.Log("After spawn Mobile");
+        //Debug.Log("After spawn Mobile");
         if (_mobileEnemies.Count != 0)
         {
             int index = Random.Range(0, _mobileEnemies.Count);
@@ -65,9 +65,9 @@ public class LoaderEnemies : MonoBehaviour
 
     private IEnumerator SpawnUFOEnemy(float secToWait)
     {
-        Debug.Log("Before spawn UFO");
+        //Debug.Log("Before spawn UFO");
         yield return new WaitForSeconds(secToWait);
-        Debug.Log("After spawn UFO");
+        //Debug.Log("After spawn UFO");
         if (_ufoEnemies.Count != 0)
         {
             int index = Random.Range(0, _ufoEnemies.Count);

@@ -1172,6 +1172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damagesPerSecond: 1
+  _collider: {fileID: 4553925405903522134}
 --- !u!95 &4997292526977513672
 Animator:
   serializedVersion: 4

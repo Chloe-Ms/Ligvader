@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _feedback: {fileID: 4536687714974496707}
-  _enemyCollider: {fileID: 0}
+  _enemyCollider: {fileID: 7663657768712326893}
 --- !u!1 &4304933967302539158
 GameObject:
   m_ObjectHideFlags: 0
