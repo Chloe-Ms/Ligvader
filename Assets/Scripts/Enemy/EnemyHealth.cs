@@ -169,25 +169,25 @@ public class EnemyHealth : MonoBehaviour
         {
             if (transform.parent.transform.parent.childCount == 1)
             {
-                //Debug.Log("AA");
+                Debug.Log("AA");
                 Destroy(transform.parent.transform.parent.gameObject);
                 LoaderEnemies.Instance.LoadNewStaticEnemies();
             }
             else
             {
-                //Debug.Log("BB");
+                Debug.Log("BB");
                 Destroy(transform.parent.gameObject);
             }
         }
         else if (transform.parent != null && transform.parent.tag == "StaticEnemyPattern" && transform.parent.childCount == 1)
         {
-            //Debug.Log("CC");
+            Debug.Log("CC");
             Destroy(transform.parent.gameObject);
             LoaderEnemies.Instance.LoadNewStaticEnemies();
         }
         else
         {
-            //Debug.Log("DD");
+            Debug.Log("DD");
             Destroy(gameObject);
         }
         if (_explosionPrefab != null)
