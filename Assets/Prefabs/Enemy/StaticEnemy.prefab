@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3899381747892831050}
   - component: {fileID: -620776796611517386}
   - component: {fileID: 5557272818445872667}
+  - component: {fileID: 1326664455535027021}
   m_Layer: 0
   m_Name: StaticEnemy
   m_TagString: Enemy
@@ -155,6 +156,8 @@ MonoBehaviour:
   - {fileID: 8845017225537953109, guid: 98092d616aba9c547bccda90a5fee87f, type: 3}
   _explosionPrefab: {fileID: 7401508628624639251, guid: 3bdd38fcac7a45a4489f50e9c79f57ff, type: 3}
   _impactPrefab: {fileID: 7242693052117736479, guid: 4bc31af0935be734fa703f9d43041e44, type: 3}
+  _spriteMidLife: {fileID: 0}
+  _renderer: {fileID: 0}
 --- !u!50 &5557272818445872667
 Rigidbody2D:
   serializedVersion: 4
@@ -176,6 +179,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 6
+--- !u!114 &1326664455535027021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1100007556942780471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f0c4f6dd0158164a99478cf072532a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _feedback: {fileID: 6994049506346327384}
+  _enemyCollider: {fileID: 536702539569737969}
 --- !u!1 &4304933967302539158
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,5 +288,10 @@ PrefabInstance:
 --- !u!4 &6994049506346327381 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1259572695086649347, guid: cd2db78fbfb0dfa41aa40bb167b7c812, type: 3}
+  m_PrefabInstance: {fileID: 8103449389226200406}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6994049506346327384 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1259572695086649358, guid: cd2db78fbfb0dfa41aa40bb167b7c812, type: 3}
   m_PrefabInstance: {fileID: 8103449389226200406}
   m_PrefabAsset: {fileID: 0}

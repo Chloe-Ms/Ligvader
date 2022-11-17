@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerLaser : MonoBehaviour
 {
     [SerializeField] private float _damagesPerSecond = 1f;
+    [SerializeField] private Collider2D _collider;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -13,9 +14,9 @@ public class PlayerLaser : MonoBehaviour
         }
 
         FeedbackLaser feedback = collision.gameObject.GetComponent<FeedbackLaser>();
-        if (feedback != null)
+        if (feedback != null && _collider != null)
         {
-            //feedback.StartFeedback()
+            feedback.StartFeedback(_collider);
         }
     }
 
@@ -25,7 +26,12 @@ public class PlayerLaser : MonoBehaviour
         if (health != null)
         {
             health.StopContinuousDamage();
+        }
 
+        FeedbackLaser feedback = collision.gameObject.GetComponent<FeedbackLaser>();
+        if (feedback != null && _collider != null)
+        {
+            feedback.StopFeedBack();
         }
     }
 }

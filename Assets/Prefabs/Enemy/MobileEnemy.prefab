@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5557272818445872667}
   - component: {fileID: -4987246202172779311}
   - component: {fileID: 8664326584507480364}
+  - component: {fileID: 3647057508060485264}
   m_Layer: 0
   m_Name: MobileEnemy
   m_TagString: Enemy
@@ -199,6 +200,20 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &3647057508060485264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1100007556942780471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f0c4f6dd0158164a99478cf072532a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _feedback: {fileID: 8627235913253243946}
+  _enemyCollider: {fileID: 8664326584507480364}
 --- !u!1 &4304933967302539158
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,5 +309,10 @@ PrefabInstance:
 --- !u!4 &8627235913253243943 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1259572695086649347, guid: cd2db78fbfb0dfa41aa40bb167b7c812, type: 3}
+  m_PrefabInstance: {fileID: 7404199176232770596}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8627235913253243946 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1259572695086649358, guid: cd2db78fbfb0dfa41aa40bb167b7c812, type: 3}
   m_PrefabInstance: {fileID: 7404199176232770596}
   m_PrefabAsset: {fileID: 0}
