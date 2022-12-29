@@ -8,7 +8,6 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float _speed = 2f;
     [SerializeField] private float _padding = 2f;
     [SerializeField] private float _rowDifference = 0.25f;
-    [SerializeField] private EnemyHealth _healthScript;
     private Vector3 _direction = Vector3.right;
 
     void Update()
@@ -36,11 +35,12 @@ public class EnemyMovement : MonoBehaviour
                 }
             }
         }
-        if (transform.childCount == 0)
+        /*if (transform.childCount == 0)
         {
+            Debug.Log("Destroy in enemyMovement");
             LoaderEnemies.Instance.LoadNewStaticEnemies();
             Destroy(gameObject);
-        }
+        }*/
     }
 
     private void AdvanceRow()
