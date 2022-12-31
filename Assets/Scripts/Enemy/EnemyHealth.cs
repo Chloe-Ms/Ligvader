@@ -85,7 +85,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if (_currentHealth <= 0f)
         {
-            Debug.Log("CheckDeath");
+            //Debug.Log("CheckDeath");
             _scoreScript.AddAmountToScore(_points);
             DropBonus();
             LoaderEnemies.Instance.CheckLoadMobileEnemies(gameObject);
@@ -182,28 +182,31 @@ public class EnemyHealth : MonoBehaviour
         {
             if (transform.parent.transform.parent.childCount == 1)
             {
-                Debug.Log("AA");
+                //Debug.Log("AA");
                 Destroy(transform.parent.transform.parent.gameObject);
                 //LoaderEnemies.Instance.LoadNewStaticEnemies();
-                LoaderEnemies.Instance.LoadNewEnemies = true;
+                //LoaderEnemies.Instance.LoadNewEnemies = true;
+                LoaderEnemies.Instance.DecreaseNumberOfWaves();
             }
             else
             {
-                Debug.Log("BB");
+                //Debug.Log("BB");
                 Destroy(transform.parent.gameObject);
             }
         }
         else if (transform.parent != null && transform.parent.tag == "StaticEnemyPattern" && transform.parent.childCount == 1)
         {
-            Debug.Log(this.name);
-            Debug.Log("CC");
+            //Debug.Log("CC");
             Destroy(transform.parent.gameObject);
-            LoaderEnemies.Instance.LoadNewEnemies = true;
+            //LoaderEnemies.Instance.LoadNewEnemies = true;
+            LoaderEnemies.Instance.DecreaseNumberOfWaves();
+
+            //TO DO changer la ligne du dessus partout en faisant un decrease waves + dans update quand à 0 on reload les waves
             //LoaderEnemies.Instance.LoadNewStaticEnemies();
         }
         else
         {
-            Debug.Log("DD");
+            //Debug.Log("DD");
             Destroy(gameObject);
         }
         if (_explosionPrefab != null)

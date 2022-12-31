@@ -12,6 +12,12 @@ public class LoaderEnemies : MonoBehaviour
     [SerializeField] float _secBeforeRespawnUFO = 40;
     [SerializeField] float _secBeforeFirstSpawnUFO = 2;
     [SerializeField] List<GameObject> _staticEnemies;
+    [SerializeField] float[] _timerChangeLevelEnemies;
+
+    float _timer;
+    int _indexArrayLevelEnemies = 0;
+    int _numberOfWaves = 1;
+    int _numberOfWavesLeft;
     bool isLoadingEnemies = false;
     bool isLoadingMobileEnemies = false;
     bool isLoadingUFOEnemies = false;
@@ -41,6 +47,8 @@ public class LoaderEnemies : MonoBehaviour
     {
         StartCoroutine(SpawnMobileEnemy(_secBeforeFirstSpawnMobile));
         StartCoroutine(SpawnUFOEnemy(_secBeforeFirstSpawnUFO));
+        _numberOfWavesLeft = _numberOfWaves;
+        _timer = 0f;
     }
 
     public void CheckLoadMobileEnemies(GameObject go)
@@ -61,14 +69,25 @@ public class LoaderEnemies : MonoBehaviour
         }
     }
 
+    public void DecreaseNumberOfWaves()
+    {
+        Debug.Log("Waves left ");
+        _numberOfWavesLeft--;
+        if (_numberOfWavesLeft == 0)
+        {
+            loadNewEnemies = true;
+        }
+
+    }
+
     private IEnumerator SpawnMobileEnemy(float secToWait)
     {
         /*if (!isLoadingMobileEnemies)
         {
             isLoadingMobileEnemies = true;*/
-            Debug.Log("Before spawn Mobile");
+            //Debug.Log("Before spawn Mobile");
             yield return new WaitForSeconds(secToWait);
-            Debug.Log("After spawn Mobile");
+            //Debug.Log("After spawn Mobile");
             if (_mobileEnemies.Count != 0)
             {
                 int index = Random.Range(0, _mobileEnemies.Count);
@@ -84,9 +103,9 @@ public class LoaderEnemies : MonoBehaviour
        /* if (!isLoadingUFOEnemies)
         {
             isLoadingUFOEnemies = true;*/
-            Debug.Log("Before spawn UFO");
+            //Debug.Log("Before spawn UFO");
             yield return new WaitForSeconds(secToWait);
-            Debug.Log("After spawn UFO");
+            //Debug.Log("After spawn UFO");
             if (_ufoEnemies.Count != 0)
             {
                 int index = Random.Range(0, _ufoEnemies.Count);
@@ -98,16 +117,27 @@ public class LoaderEnemies : MonoBehaviour
     }
 
     public void LoadNewStaticEnemies()
-    { 
+    {
+
+        for(int i = 0; i < _numberOfWaves; i++)
+        {
             if (_staticEnemies.Count == 0)
                 return;
             int index = Random.Range(0, _staticEnemies.Count);
 
             Instantiate(_staticEnemies[index]);
+        }
+        _numberOfWavesLeft = _numberOfWaves;
     }
 
     private void Update()
     {
+        _timer += Time.deltaTime;
+        if (_indexArrayLevelEnemies < _timerChangeLevelEnemies.Length && _timer > _timerChangeLevelEnemies[_indexArrayLevelEnemies])
+        {
+            _numberOfWaves++;
+            _indexArrayLevelEnemies++;
+        }
         if (loadNewEnemies && !isLoadingEnemies)
         {
             isLoadingEnemies = true;
