@@ -512,6 +512,9 @@ MonoBehaviour:
   - {fileID: 1961628488734660991, guid: d0ce5516ab8837b44aa046fe2748dc12, type: 3}
   - {fileID: 4633216329277558384, guid: 377ea2e3ade4ad64fac08df8ea3e2707, type: 3}
   - {fileID: 1961628488734660991, guid: ea1674859bc900b4d99847c10bce1b4f, type: 3}
+  _timerChangeLevelEnemies:
+  - 360
+  - 720
 --- !u!4 &269067417
 Transform:
   m_ObjectHideFlags: 0

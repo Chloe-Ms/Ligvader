@@ -12,7 +12,23 @@ public class LoaderEnemies : MonoBehaviour
     [SerializeField] float _secBeforeRespawnUFO = 40;
     [SerializeField] float _secBeforeFirstSpawnUFO = 2;
     [SerializeField] List<GameObject> _staticEnemies;
+    [SerializeField] float[] _timerChangeLevelEnemies;
 
+    float _timer;
+    int _indexArrayLevelEnemies = 0;
+    int _numberOfWaves = 1;
+    int _numberOfWavesLeft;
+    bool isLoadingEnemies = false;
+    bool isLoadingMobileEnemies = false;
+    bool isLoadingUFOEnemies = false;
+    bool loadNewEnemies = false;
+    bool loadNewMobileEnemies = false;
+    bool loadNewUFOEnemies = false;
+    public bool LoadNewEnemies
+    {
+        get { return loadNewEnemies; }
+        set { loadNewEnemies = value; }
+    }
     public static LoaderEnemies Instance {
         get { return instance; }
         private set { instance = value; }
@@ -31,6 +47,8 @@ public class LoaderEnemies : MonoBehaviour
     {
         StartCoroutine(SpawnMobileEnemy(_secBeforeFirstSpawnMobile));
         StartCoroutine(SpawnUFOEnemy(_secBeforeFirstSpawnUFO));
+        _numberOfWavesLeft = _numberOfWaves;
+        _timer = 0f;
     }
 
     public void CheckLoadMobileEnemies(GameObject go)
@@ -40,48 +58,108 @@ public class LoaderEnemies : MonoBehaviour
         {
             if (followScript.Loop)
             {
+                loadNewMobileEnemies = true;
                 //Mobile
-                StartCoroutine(SpawnMobileEnemy(_secBeforeRespawnMobile));
+                //(SpawnMobileEnemy(_secBeforeRespawnMobile));
             } else
             {
                 //UFO
-                StartCoroutine(SpawnUFOEnemy(_secBeforeRespawnUFO));
+                loadNewUFOEnemies = true;
             }
         }
     }
 
+    public void DecreaseNumberOfWaves()
+    {
+        Debug.Log("Waves left ");
+        _numberOfWavesLeft--;
+        if (_numberOfWavesLeft == 0)
+        {
+            loadNewEnemies = true;
+        }
+
+    }
+
     private IEnumerator SpawnMobileEnemy(float secToWait)
     {
-        //Debug.Log("Before spawn Mobile");
-        yield return new WaitForSeconds(secToWait);
-        //Debug.Log("After spawn Mobile");
-        if (_mobileEnemies.Count != 0)
+        /*if (!isLoadingMobileEnemies)
         {
-            int index = Random.Range(0, _mobileEnemies.Count);
+            isLoadingMobileEnemies = true;*/
+            //Debug.Log("Before spawn Mobile");
+            yield return new WaitForSeconds(secToWait);
+            //Debug.Log("After spawn Mobile");
+            if (_mobileEnemies.Count != 0)
+            {
+                int index = Random.Range(0, _mobileEnemies.Count);
 
-            Instantiate(_mobileEnemies[index]);
-        }
+                Instantiate(_mobileEnemies[index]);
+            }
+          /*  isLoadingMobileEnemies = false;
+        }*/
     }
 
     private IEnumerator SpawnUFOEnemy(float secToWait)
     {
-        //Debug.Log("Before spawn UFO");
-        yield return new WaitForSeconds(secToWait);
-        //Debug.Log("After spawn UFO");
-        if (_ufoEnemies.Count != 0)
+       /* if (!isLoadingUFOEnemies)
         {
-            int index = Random.Range(0, _ufoEnemies.Count);
+            isLoadingUFOEnemies = true;*/
+            //Debug.Log("Before spawn UFO");
+            yield return new WaitForSeconds(secToWait);
+            //Debug.Log("After spawn UFO");
+            if (_ufoEnemies.Count != 0)
+            {
+                int index = Random.Range(0, _ufoEnemies.Count);
 
-            Instantiate(_ufoEnemies[index]);
-        }
+                Instantiate(_ufoEnemies[index]);
+            }
+          //  isLoadingUFOEnemies = false;
+        //}
     }
 
     public void LoadNewStaticEnemies()
     {
-        if (_staticEnemies.Count == 0)
-            return;
-        int index = Random.Range(0, _staticEnemies.Count);
 
-        Instantiate(_staticEnemies[index]) ;
+        for(int i = 0; i < _numberOfWaves; i++)
+        {
+            if (_staticEnemies.Count == 0)
+                return;
+            int index = Random.Range(0, _staticEnemies.Count);
+
+            Instantiate(_staticEnemies[index]);
+        }
+        _numberOfWavesLeft = _numberOfWaves;
+    }
+
+    private void Update()
+    {
+        _timer += Time.deltaTime;
+        if (_indexArrayLevelEnemies < _timerChangeLevelEnemies.Length && _timer > _timerChangeLevelEnemies[_indexArrayLevelEnemies])
+        {
+            _numberOfWaves++;
+            _indexArrayLevelEnemies++;
+        }
+        if (loadNewEnemies && !isLoadingEnemies)
+        {
+            isLoadingEnemies = true;
+            LoadNewStaticEnemies();
+            loadNewEnemies = false;
+            isLoadingEnemies = false;
+        }
+
+        if (loadNewMobileEnemies && !isLoadingMobileEnemies)
+        {
+            isLoadingMobileEnemies = true;
+            StartCoroutine(SpawnMobileEnemy(_secBeforeRespawnMobile));
+            loadNewMobileEnemies = false;
+            isLoadingMobileEnemies = false;
+        }
+
+        if (loadNewUFOEnemies && !isLoadingUFOEnemies)
+        {
+            isLoadingUFOEnemies= true;
+            StartCoroutine(SpawnUFOEnemy(_secBeforeRespawnUFO));
+            loadNewUFOEnemies = false;
+            isLoadingUFOEnemies = false;
+        }
     }
 }

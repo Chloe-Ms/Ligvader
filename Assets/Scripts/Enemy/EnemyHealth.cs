@@ -22,6 +22,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] Sprite _spriteMidLife;
     bool _isMidLife = false;
     [SerializeField] SpriteRenderer _renderer;
+    bool _isTakingDamage = false;
 
     public float CurrentHealth
     {
@@ -63,8 +64,13 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage()
     {
         _currentHealth--;
-        CheckMidLife();
-        CheckDeath();
+        if (!_isTakingDamage)
+        {
+            _isTakingDamage = true;
+            CheckMidLife();
+            CheckDeath();
+            _isTakingDamage = false;
+        }
     }
 
     private void CheckMidLife()
@@ -79,6 +85,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if (_currentHealth <= 0f)
         {
+            //Debug.Log("CheckDeath");
             _scoreScript.AddAmountToScore(_points);
             DropBonus();
             LoaderEnemies.Instance.CheckLoadMobileEnemies(gameObject);
@@ -145,9 +152,15 @@ public class EnemyHealth : MonoBehaviour
         if (_isInLaser)
         {
             _currentHealth -= _damageFromPlayer * Time.deltaTime;
-            CheckMidLife();
-            CheckDeath();
+            if (!_isTakingDamage)
+            {
+                _isTakingDamage = true;
+                CheckMidLife();
+                CheckDeath();
+                _isTakingDamage = false;
+            }
         }
+        //Check la vie dans update pas à d'autres endroits
 
         //Outside game screen (lower than the screen)
         if (_renderer != null && transform.position.y + (_renderer.bounds.size.y / 2f) < -_screenBounds.y)
@@ -171,7 +184,9 @@ public class EnemyHealth : MonoBehaviour
             {
                 //Debug.Log("AA");
                 Destroy(transform.parent.transform.parent.gameObject);
-                LoaderEnemies.Instance.LoadNewStaticEnemies();
+                //LoaderEnemies.Instance.LoadNewStaticEnemies();
+                //LoaderEnemies.Instance.LoadNewEnemies = true;
+                LoaderEnemies.Instance.DecreaseNumberOfWaves();
             }
             else
             {
@@ -183,7 +198,11 @@ public class EnemyHealth : MonoBehaviour
         {
             //Debug.Log("CC");
             Destroy(transform.parent.gameObject);
-            LoaderEnemies.Instance.LoadNewStaticEnemies();
+            //LoaderEnemies.Instance.LoadNewEnemies = true;
+            LoaderEnemies.Instance.DecreaseNumberOfWaves();
+
+            //TO DO changer la ligne du dessus partout en faisant un decrease waves + dans update quand à 0 on reload les waves
+            //LoaderEnemies.Instance.LoadNewStaticEnemies();
         }
         else
         {
