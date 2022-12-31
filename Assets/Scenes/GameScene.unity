@@ -495,11 +495,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mobileEnemies:
   - {fileID: 4586233586064774468, guid: 3a9961a7464a56141a12a74aed760b38, type: 3}
+  - {fileID: 4586233586064774468, guid: aa7e57163887561498bfb028ff7029d4, type: 3}
+  - {fileID: 4586233586064774468, guid: d5137080474b88e4da0ae266916f5dca, type: 3}
   _secBeforeRespawnMobile: 10
   _secBeforeFirstSpawnMobile: 1
   _ufoEnemies:
   - {fileID: 7100923809002885398, guid: 364f07eb001effd428b3b485fe752c76, type: 3}
-  - {fileID: 6284817528374437356, guid: 74cf31b159c41584e9d4f1b222ba0829, type: 3}
+  - {fileID: 7100923809002885398, guid: b9a698c8f8a01da439f02f15d67e8d83, type: 3}
   _secBeforeRespawnUFO: 40
   _secBeforeFirstSpawnUFO: 2
   _staticEnemies:
@@ -2862,6 +2864,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2120895165}
   - component: {fileID: 2120895164}
+  - component: {fileID: 2120895166}
   m_Layer: 0
   m_Name: fond
   m_TagString: Untagged
@@ -2910,7 +2913,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -4
-  m_Sprite: {fileID: 21300000, guid: cb199618e3c5baa46b2aa7097fce942b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dd8aa3f6051655745a0fb276be44e0d9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2936,3 +2939,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &2120895166
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2120895163}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5fef657902f295548b6b5e9d10c9c6ce, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

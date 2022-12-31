@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 8554182123521684924}
   - component: {fileID: 8554182123521684921}
   - component: {fileID: 1282911398302965408}
+  - component: {fileID: 4847492544011993192}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Enemy
@@ -195,6 +196,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _feedback: {fileID: 958695652703252344}
   _enemyCollider: {fileID: 8554182123521684927}
+--- !u!95 &4847492544011993192
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8554182123521684915}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 81bba09bbeb7e344d8a49ac223720d85, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8554182124498626848
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,6 +264,7 @@ GameObject:
   - component: {fileID: 8554182124548547448}
   - component: {fileID: 8554182124548547449}
   - component: {fileID: 2116972720457023736}
+  - component: {fileID: 4476231141151015878}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -421,6 +443,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _feedback: {fileID: 4690518099458699959}
   _enemyCollider: {fileID: 8554182124548547450}
+--- !u!95 &4476231141151015878
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8554182124548547452}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d5f604a56580fb74f8490274f83bf129, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &2033126934069477238
 PrefabInstance:
   m_ObjectHideFlags: 0

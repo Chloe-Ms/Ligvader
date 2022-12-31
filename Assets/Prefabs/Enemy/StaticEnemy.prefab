@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -620776796611517386}
   - component: {fileID: 5557272818445872667}
   - component: {fileID: 1326664455535027021}
+  - component: {fileID: 4569895268332043002}
   m_Layer: 0
   m_Name: StaticEnemy
   m_TagString: Enemy
@@ -193,6 +194,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _feedback: {fileID: 6994049506346327384}
   _enemyCollider: {fileID: 536702539569737969}
+--- !u!95 &4569895268332043002
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1100007556942780471}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6a234703a5fe03f4c90f7ec8231ab040, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4304933967302539158
 GameObject:
   m_ObjectHideFlags: 0

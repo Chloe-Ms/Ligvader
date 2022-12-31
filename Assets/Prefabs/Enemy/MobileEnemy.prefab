@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -4987246202172779311}
   - component: {fileID: 8664326584507480364}
   - component: {fileID: 3647057508060485264}
+  - component: {fileID: 6185612304954429780}
   m_Layer: 0
   m_Name: MobileEnemy
   m_TagString: Enemy
@@ -214,6 +215,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _feedback: {fileID: 8627235913253243946}
   _enemyCollider: {fileID: 8664326584507480364}
+--- !u!95 &6185612304954429780
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1100007556942780471}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 98c15f7ffa65c8342a8376d708ceb613, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4304933967302539158
 GameObject:
   m_ObjectHideFlags: 0
