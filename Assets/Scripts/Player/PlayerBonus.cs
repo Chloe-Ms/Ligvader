@@ -75,6 +75,7 @@ public class PlayerBonus : MonoBehaviour
             _movementScript.SetCanMoveVertically(true);
             _normalCollider.enabled = false;
             _edgeCollider.enabled = true;
+            _movementScript.HasPower = true;
             _moduleMeca.SetActive(true);
             if (_bonuses.Contains(BonusType.BLUE)) //On a pas le bonus noir
             {
@@ -103,6 +104,7 @@ public class PlayerBonus : MonoBehaviour
             _moduleGros.SetActive(true);
             _normalCollider.enabled = false;
             _edgeCollider.enabled = true;
+            _movementScript.HasPower = true;
             if (_bonuses.Contains(BonusType.BLACK)) //On a pas le bonus noir
             {
                 _edgeCollider.points = _colliders[1]._points;
@@ -182,6 +184,7 @@ public class PlayerBonus : MonoBehaviour
         EndTimerBonusG();
         _normalCollider.enabled = true;
         _edgeCollider.enabled = false;
+        _movementScript.HasPower = false;
         //AUGMENTER LA VITESSE
         _movementScript.ChangeSpeed(1f);
     }
