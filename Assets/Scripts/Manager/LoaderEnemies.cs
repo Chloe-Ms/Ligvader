@@ -16,6 +16,7 @@ public class LoaderEnemies : MonoBehaviour
 
     float _timer;
     int _indexArrayLevelEnemies = 0;
+    int _numberOfEnemies = 0;
     int _numberOfWaves = 1;
     int _numberOfWavesLeft;
     bool isLoadingEnemies = false;
@@ -36,6 +37,7 @@ public class LoaderEnemies : MonoBehaviour
 
     void Awake()
     {
+        Debug.Log("Awake");
         if (instance != null && instance != this)
             Destroy(gameObject);  
 
@@ -45,6 +47,7 @@ public class LoaderEnemies : MonoBehaviour
 
     public void Start()
     {
+        Debug.Log("start");
         StartCoroutine(SpawnMobileEnemy(_secBeforeFirstSpawnMobile));
         StartCoroutine(SpawnUFOEnemy(_secBeforeFirstSpawnUFO));
         _numberOfWavesLeft = _numberOfWaves;
@@ -71,9 +74,8 @@ public class LoaderEnemies : MonoBehaviour
 
     public void DecreaseNumberOfWaves()
     {
-        Debug.Log("Waves left ");
         _numberOfWavesLeft--;
-        if (_numberOfWavesLeft == 0)
+        if (_numberOfWavesLeft <= 0)
         {
             loadNewEnemies = true;
         }
@@ -161,5 +163,11 @@ public class LoaderEnemies : MonoBehaviour
             loadNewUFOEnemies = false;
             isLoadingUFOEnemies = false;
         }
+    }
+
+    public void Restart()
+    {
+        _numberOfWaves = 1;
+        _numberOfWavesLeft = _numberOfWaves;
     }
 }

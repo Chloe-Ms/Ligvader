@@ -18,7 +18,6 @@ public class PlayerHealth : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(_health);
     }
 
     public void TakeDamage()

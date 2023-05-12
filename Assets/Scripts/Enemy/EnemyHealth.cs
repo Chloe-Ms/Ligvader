@@ -182,10 +182,8 @@ public class EnemyHealth : MonoBehaviour
         {
             if (transform.parent.transform.parent.childCount == 1)
             {
-                //Debug.Log("AA");
                 Destroy(transform.parent.transform.parent.gameObject);
-                //LoaderEnemies.Instance.LoadNewStaticEnemies();
-                //LoaderEnemies.Instance.LoadNewEnemies = true;
+                //Debug.Log("1-1");
                 LoaderEnemies.Instance.DecreaseNumberOfWaves();
             }
             else
@@ -194,19 +192,14 @@ public class EnemyHealth : MonoBehaviour
                 Destroy(transform.parent.gameObject);
             }
         }
-        else if (transform.parent != null && transform.parent.tag == "StaticEnemyPattern" && transform.parent.childCount == 1)
+        else if (transform.parent != null && transform.parent.tag == "StaticEnemyPattern" && transform.parent.childCount <= 1)
         {
-            //Debug.Log("CC");
             Destroy(transform.parent.gameObject);
-            //LoaderEnemies.Instance.LoadNewEnemies = true;
+            //Debug.Log("1-2");
             LoaderEnemies.Instance.DecreaseNumberOfWaves();
-
-            //TO DO changer la ligne du dessus partout en faisant un decrease waves + dans update quand à 0 on reload les waves
-            //LoaderEnemies.Instance.LoadNewStaticEnemies();
         }
         else
         {
-            //Debug.Log("DD");
             Destroy(gameObject);
         }
         if (_explosionPrefab != null)
